@@ -28,8 +28,8 @@
 
 ### Results
 
-- [ ] **RESULTS-01**: App displays the final amount each person owes
-- [ ] **RESULTS-02**: App displays an itemized breakdown per person showing what they had, their share of tax, and their tip
+- [x] **RESULTS-01**: App displays the final amount each person owes
+- [x] **RESULTS-02**: App displays an itemized breakdown per person showing what they had, their share of tax, and their tip
 
 ## v2 Requirements
 
@@ -69,8 +69,8 @@
 | ITEMS-04 | Phase 2 | Complete |
 | TIP-01 | Phase 3 | Complete |
 | TAX-01 | Phase 3 | Complete |
-| RESULTS-01 | Phase 3 | Pending |
-| RESULTS-02 | Phase 3 | Pending |
+| RESULTS-01 | Phase 3 | Complete |
+| RESULTS-02 | Phase 3 | Complete |
 
 **Coverage:**
 - v1 requirements: 11 total
