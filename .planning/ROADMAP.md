@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Data model, Zustand store, and pure calculation engine with integer-cent arithmetic (completed 2026-03-18)
 - [ ] **Phase 2: People and Items UI** - Complete input surface for adding people, items, and assigning who had what
-- [ ] **Phase 3: Tip, Tax, and Results** - Per-person tip, proportional tax, and itemized per-person totals
+- [x] **Phase 3: Tip, Tax, and Results** - Per-person tip, proportional tax, and itemized per-person totals (completed 2026-03-18)
 - [ ] **Phase 4: Mobile Polish** - Touch UX, keyboard occlusion, edge cases, and real-device QA
 
 ## Phase Details
@@ -60,7 +60,7 @@ Plans:
   2. User can set a single tax percentage for the whole bill, split proportionally across everyone
   3. The app displays the final amount each person owes, prominently
   4. Each person's row expands to show an itemized breakdown: what they had, their share of tax, and their tip amount
-**Plans:** 3 plans
+**Plans:** 3/3 plans complete
 
 Plans:
 - [ ] 03-01-PLAN.md — Engine + store changes: add tipOverrides to AppState, store actions, and per-person tip override in calculateResults
@@ -88,5 +88,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | --- | --- | --- | --- |
 | 1. Foundation | 2/2 | Complete    | 2026-03-18 |
 | 2. People and Items UI | 0/2 | Not started | - |
-| 3. Tip, Tax, and Results | 0/3 | Not started | - |
+| 3. Tip, Tax, and Results | 3/3 | Complete   | 2026-03-18 |
 | 4. Mobile Polish | 0/TBD | Not started | - |

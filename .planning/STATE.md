@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in-progress
-stopped_at: Completed 03-02-PLAN.md
+stopped_at: Completed 03-03-PLAN.md
 last_updated: "2026-03-18T23:10:36.320Z"
-last_activity: 2026-03-18 — Completed Plan 03-02 (Tip/Tax Settings and Results UI)
+last_activity: 2026-03-18 — Completed Plan 03-03 (Hardening, Accessibility, and Integration Tests)
 progress:
   total_phases: 4
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 7
-  completed_plans: 6
-  percent: 86
+  completed_plans: 7
+  percent: 100
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-03-18)
 ## Current Position
 
 Phase: 3 of 4 (Tip, Tax, and Results)
-Plan: 2 of 3 in current phase (03-02 complete)
-Status: Phase 3 in progress
-Last activity: 2026-03-18 — Completed Plan 03-02 (Tip/Tax Settings and Results UI)
+Plan: 3 of 3 in current phase (03-03 complete)
+Status: Phase 3 complete
+Last activity: 2026-03-18 — Completed Plan 03-03 (Hardening, Accessibility, and Integration Tests)
 
-Progress: [█████████░] 86%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -54,6 +54,7 @@ Progress: [█████████░] 86%
 | Phase 02-people-and-items-ui P02 | 2 min | 2 tasks | 6 files |
 | Phase 03-tip-tax-and-results P01 | 2 min | 2 tasks | 5 files |
 | Phase 03-tip-tax-and-results P02 | 2 min | 2 tasks | 6 files |
+| Phase 03-tip-tax-and-results P03 | 2 min | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -77,6 +78,9 @@ Recent decisions affecting current work:
 - [Phase 03-01]: Per-person overrides pattern: Record<string, number> on state, cleanup on removePerson
 - [Phase 03-02]: Grand total is sum of PersonResult.totalInCents, not independently calculated (avoids rounding drift)
 - [Phase 03-02]: Expand/collapse state kept in local useState (Set<string>), not global store (purely UI state)
+- [Phase 03-03]: Tip/tax validation caps at 100% to prevent absurd values
+- [Phase 03-03]: isCustom initialized via PRESETS.includes check, not hardcoded false
+- [Phase 03-03]: aria-label on expand button is dynamic with person name
 
 ### Pending Todos
 
@@ -89,6 +93,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-18T23:10:00Z
-Stopped at: Completed 03-02-PLAN.md
-Resume file: .planning/phases/03-tip-tax-and-results/03-03-PLAN.md
+Last session: 2026-03-18T23:14:30Z
+Stopped at: Completed 03-03-PLAN.md
+Resume file: Phase 3 complete. Ready for Phase 4.
