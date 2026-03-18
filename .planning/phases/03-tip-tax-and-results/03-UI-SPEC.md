@@ -35,7 +35,7 @@ Declared values (must be multiples of 4):
 |-------|-------|-------|
 | xs | 4px | Icon gaps, inline padding, chevron margins |
 | sm | 8px | Gap between label and value in result rows, compact margins |
-| md | 16px | Default element spacing, input padding, result card internal padding |
+| md | 16px | Default element spacing, input padding, result card internal padding, card-to-card gaps, breakdown separators |
 | lg | 24px | Section padding (Settings panel, Results panel) |
 | xl | 32px | Gap between major sections (Items panel to Settings, Settings to Results) |
 | 2xl | 48px | Not used in this phase |
@@ -74,7 +74,7 @@ Exceptions: Touch targets on tip/tax steppers and expand/collapse buttons use `m
 
 **Accent reserved for:**
 1. Active/selected tip percentage preset button (e.g., "18%" when selected)
-2. "Custom" tip input focus ring
+2. "Custom %" tip input focus ring
 
 **New in this phase -- Success color reserved for:**
 1. Verification indicator when individual totals sum to the bill total (optional visual confidence signal)
@@ -95,12 +95,12 @@ Exceptions: Touch targets on tip/tax steppers and expand/collapse buttons use `m
 
 #### Tip Input Group
 - Label: "Tip" at body size (16px/400)
-- Preset buttons: horizontal row of common percentages: 15%, 18%, 20%, 25%, Custom
+- Preset buttons: horizontal row of common percentages: 15%, 18%, 20%, 25%, Custom %
 - Each preset button: `min-h-[44px] px-4 py-2 rounded-lg text-sm font-medium`
 - Selected preset: `bg-blue-500 text-white`
 - Unselected preset: `bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300`
 - Container: `flex flex-wrap gap-2`
-- "Custom" opens an inline number input: `inputMode="decimal"`, width `w-20`, suffix "%" label
+- "Custom %" opens an inline number input: `inputMode="decimal"`, width `w-20`, suffix "%" label
 - Default selection: 18% (matches `settings.defaultTipPercent`)
 
 **Note on TIP-01 (per-person tip):** The requirement states "User can set a tip percentage per person." The settings panel sets the default tip for everyone. Per-person override is handled in the Results panel -- each person's expanded breakdown includes an editable tip percentage that defaults to the global setting but can be overridden individually.
@@ -121,7 +121,7 @@ Exceptions: Touch targets on tip/tax steppers and expand/collapse buttons use `m
 #### Person Result Card
 - Container: `border border-gray-200 dark:border-gray-700 rounded-lg` with `p-4`
 - Background: `bg-gray-50 dark:bg-gray-800` (secondary surface)
-- Stacked vertically with `space-y-3` (12px) gap between cards
+- Stacked vertically with `space-y-4` (16px) gap between cards
 
 **Collapsed state (default):**
 - Layout: horizontal flex, three elements
@@ -132,7 +132,7 @@ Exceptions: Touch targets on tip/tax steppers and expand/collapse buttons use `m
 
 **Expanded state (on tap/click of card or chevron):**
 - Everything in collapsed state remains visible
-- Below the summary line, a breakdown area appears with `mt-3 pt-3 border-t border-gray-200 dark:border-gray-700`
+- Below the summary line, a breakdown area appears with `mt-4 pt-4 border-t border-gray-200 dark:border-gray-700`
 - Breakdown uses a definition-list style layout:
 
 | Line | Left (Label 14px/400) | Right (Label 14px/400) |
@@ -169,7 +169,7 @@ Exceptions: Touch targets on tip/tax steppers and expand/collapse buttons use `m
 | Tip preset 2 | 18% |
 | Tip preset 3 | 20% |
 | Tip preset 4 | 25% |
-| Tip custom button | Custom |
+| Tip custom button | Custom % |
 | Tax input placeholder | 0 |
 | Custom tip input placeholder | % |
 | Per-person tip label | Tip ({percent}%) |
@@ -190,11 +190,11 @@ Exceptions: Touch targets on tip/tax steppers and expand/collapse buttons use `m
 ## Interaction Contracts
 
 ### Tip Preset Selection Flow
-1. User sees a row of preset tip buttons (15%, 18%, 20%, 25%, Custom)
+1. User sees a row of preset tip buttons (15%, 18%, 20%, 25%, Custom %)
 2. The 18% button is selected by default (accent background)
 3. Tapping a preset instantly updates `settings.defaultTipPercent` and recalculates all results
 4. Only one preset can be active at a time
-5. Tapping "Custom" deselects all presets and shows an inline number input
+5. Tapping "Custom %" deselects all presets and shows an inline number input
 6. Typing in the custom input updates the tip percentage on blur or Enter
 
 ### Tax Input Flow
