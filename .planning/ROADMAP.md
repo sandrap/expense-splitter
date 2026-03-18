@@ -45,7 +45,11 @@ Plans:
   3. User can assign an item to one or more specific people using inline tap-toggle chips (no modal required)
   4. User can mark an item as shared among a chosen subset of people (e.g., appetizer split between two people only)
   5. Unassigned items are visually flagged so the user knows nothing is forgotten before calculating
-**Plans**: TBD
+**Plans:** 2 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Setup Tailwind v4, testing-library, utility functions, App shell, and People panel (add/edit/remove)
+- [ ] 02-02-PLAN.md — Items panel with add/edit/delete, assignment chips, split mode toggle, and unassigned flagging
 
 ### Phase 3: Tip, Tax, and Results
 **Goal**: Users see exactly what each person owes, with itemized proof, after applying tip and tax
@@ -78,6 +82,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 | --- | --- | --- | --- |
 | 1. Foundation | 2/2 | Complete    | 2026-03-18 |
-| 2. People and Items UI | 0/TBD | Not started | - |
+| 2. People and Items UI | 0/2 | Not started | - |
 | 3. Tip, Tax, and Results | 0/TBD | Not started | - |
 | 4. Mobile Polish | 0/TBD | Not started | - |

@@ -1,61 +1,73 @@
-# GSD Module - Test Version
+# React + TypeScript + Vite
 
-Test folder for the "Build with GSD" module (Module 3).
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## How to Test
+Currently, two official plugins are available:
 
-1. Open this folder in Claude Code:
-   ```
-   cd /path/to/gsd-module-test
-   claude
-   ```
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-2. Start the first lesson:
-   ```
-   /start-3-1
-   ```
+## React Compiler
 
-3. Follow the lessons in order:
-   - `/start-3-1` - What is GSD (install, context rot, project intro)
-   - `/start-3-2` - Start a Project (/gsd:new-project)
-   - `/start-3-3` - Plan the Build (/gsd:plan-phase)
-   - `/start-3-4` - Execute (/gsd:execute-phase)
-   - `/start-3-5` - Verify & Beyond (/gsd:verify-work, quick mode)
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Files
+## Expanding the ESLint configuration
 
-```
-gsd-module-test/
-├── .claude/
-│   ├── SCRIPT_INSTRUCTIONS.md    # How Claude should teach
-│   └── commands/
-│       ├── start-3-1.md          # Lesson launchers
-│       ├── start-3-2.md
-│       ├── start-3-3.md
-│       ├── start-3-4.md
-│       └── start-3-5.md
-├── lesson-modules/
-│   ├── 3.1-what-is-gsd/CLAUDE.md
-│   ├── 3.2-start-project/CLAUDE.md
-│   ├── 3.3-plan-build/CLAUDE.md
-│   ├── 3.4-execute/CLAUDE.md
-│   └── 3.5-verify-beyond/CLAUDE.md
-├── course-structure.json
-├── PROJECT_BRIEF.md              # The Expense Splitter spec
-└── README.md
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-## Notes for Testing
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-- Students need to create an `expense-splitter/` folder during 3.1
-- GSD must be installed globally (`npx get-shit-done-cc`)
-- The GSD commands take over the conversation - bookend structure
-- Expect 60-80 minutes total for all 5 lessons
-- Token usage will be high due to GSD's agent spawning
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-## What to Watch For
-
-- Does the bookend flow work? (intro → GSD command → "done" → debrief)
-- Is the pacing right?
-- Do the explanations land before students run GSD commands?
-- Does verification actually catch issues?
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
