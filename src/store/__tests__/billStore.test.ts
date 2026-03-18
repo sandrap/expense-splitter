@@ -5,7 +5,7 @@ beforeEach(() => {
   // Reset only data fields — using merge mode (no second arg) preserves action functions.
   // Note: setState(obj, true) in Zustand v5 replaces the entire state including actions,
   // which causes "action is not a function" errors. Merge mode is correct for test reset.
-  useBillStore.setState({ people: [], items: [], settings: { defaultTipPercent: 18, defaultTaxPercent: 0 } });
+  useBillStore.setState({ people: [], items: [], settings: { defaultTipPercent: 18, defaultTaxPercent: 0 }, tipOverrides: {} });
 });
 
 // Helper to get fresh state after each operation
@@ -114,5 +114,46 @@ describe('updateSettings', () => {
     expect(settings.defaultTipPercent).toBe(20);
     // defaultTaxPercent should remain unchanged
     expect(settings.defaultTaxPercent).toBe(0);
+  });
+});
+
+describe('tipOverrides initial state', () => {
+  it('starts with an empty tipOverrides object', () => {
+    expect(getStore().tipOverrides).toEqual({});
+  });
+});
+
+describe('setPersonTipOverride', () => {
+  it('sets tipOverride for a person', () => {
+    getStore().setPersonTipOverride('p1', 25);
+    expect(getStore().tipOverrides).toEqual({ p1: 25 });
+  });
+
+  it('stores overrides for two different people independently', () => {
+    getStore().setPersonTipOverride('p1', 25);
+    getStore().setPersonTipOverride('p2', 15);
+    expect(getStore().tipOverrides).toEqual({ p1: 25, p2: 15 });
+  });
+});
+
+describe('clearPersonTipOverride', () => {
+  it('removes the person key from tipOverrides', () => {
+    getStore().setPersonTipOverride('p1', 25);
+    getStore().clearPersonTipOverride('p1');
+    expect(getStore().tipOverrides).toEqual({});
+  });
+});
+
+describe('removePerson', () => {
+  it('also deletes that person\'s entry from tipOverrides', () => {
+    getStore().addPerson('Alice');
+    const aliceId = getStore().people[0].id;
+
+    getStore().setPersonTipOverride(aliceId, 25);
+    expect(getStore().tipOverrides[aliceId]).toBe(25);
+
+    getStore().removePerson(aliceId);
+    expect(getStore().tipOverrides[aliceId]).toBeUndefined();
+    expect(getStore().tipOverrides).toEqual({});
   });
 });

@@ -20,6 +20,7 @@ export interface AppState {
   people: Person[];
   items: Item[];
   settings: BillSettings;
+  tipOverrides: Record<string, number>;
 }
 
 export interface ItemLine {

@@ -5,6 +5,7 @@ interface BillState {
   people: Person[];
   items: Item[];
   settings: BillSettings;
+  tipOverrides: Record<string, number>;
   addPerson: (name: string) => void;
   removePerson: (id: string) => void;
   updatePerson: (id: string, updates: Partial<Person>) => void;
@@ -12,6 +13,8 @@ interface BillState {
   removeItem: (id: string) => void;
   updateItem: (id: string, updates: Partial<Item>) => void;
   updateSettings: (updates: Partial<BillSettings>) => void;
+  setPersonTipOverride: (personId: string, tipPercent: number) => void;
+  clearPersonTipOverride: (personId: string) => void;
 }
 
 export const useBillStore = create<BillState>()((set) => ({
@@ -21,18 +24,23 @@ export const useBillStore = create<BillState>()((set) => ({
     defaultTipPercent: 18,
     defaultTaxPercent: 0,
   },
+  tipOverrides: {},
   addPerson: (name) =>
     set((state) => ({
       people: [...state.people, { id: crypto.randomUUID(), name }],
     })),
   removePerson: (id) =>
-    set((state) => ({
-      people: state.people.filter((p) => p.id !== id),
-      items: state.items.map((item) => ({
-        ...item,
-        assignedTo: item.assignedTo.filter((pid) => pid !== id),
-      })),
-    })),
+    set((state) => {
+      const { [id]: _, ...remainingOverrides } = state.tipOverrides;
+      return {
+        people: state.people.filter((p) => p.id !== id),
+        items: state.items.map((item) => ({
+          ...item,
+          assignedTo: item.assignedTo.filter((pid) => pid !== id),
+        })),
+        tipOverrides: remainingOverrides,
+      };
+    }),
   updatePerson: (id, updates) =>
     set((state) => ({
       people: state.people.map((p) => (p.id === id ? { ...p, ...updates } : p)),
@@ -62,4 +70,13 @@ export const useBillStore = create<BillState>()((set) => ({
     set((state) => ({
       settings: { ...state.settings, ...updates },
     })),
+  setPersonTipOverride: (personId, tipPercent) =>
+    set((state) => ({
+      tipOverrides: { ...state.tipOverrides, [personId]: tipPercent },
+    })),
+  clearPersonTipOverride: (personId) =>
+    set((state) => {
+      const { [personId]: _, ...rest } = state.tipOverrides;
+      return { tipOverrides: rest };
+    }),
 }));
