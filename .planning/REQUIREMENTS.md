@@ -7,9 +7,9 @@
 
 ### People
 
-- [ ] **PEOPLE-01**: User can add a person to the bill by entering their name
-- [ ] **PEOPLE-02**: User can remove a person from the bill
-- [ ] **PEOPLE-03**: User can edit a person's name after adding them
+- [x] **PEOPLE-01**: User can add a person to the bill by entering their name
+- [x] **PEOPLE-02**: User can remove a person from the bill
+- [x] **PEOPLE-03**: User can edit a person's name after adding them
 
 ### Items
 
@@ -60,9 +60,9 @@
 
 | Requirement | Phase | Status |
 | --- | --- | --- |
-| PEOPLE-01 | Phase 2 | Pending |
-| PEOPLE-02 | Phase 2 | Pending |
-| PEOPLE-03 | Phase 2 | Pending |
+| PEOPLE-01 | Phase 2 | Complete |
+| PEOPLE-02 | Phase 2 | Complete |
+| PEOPLE-03 | Phase 2 | Complete |
 | ITEMS-01 | Phase 2 | Pending |
 | ITEMS-02 | Phase 2 | Pending |
 | ITEMS-03 | Phase 2 | Pending |
