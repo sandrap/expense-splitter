@@ -77,7 +77,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 | --- | --- | --- | --- |
-| 1. Foundation | 2/2 | Complete   | 2026-03-18 |
+| 1. Foundation | 2/2 | Complete    | 2026-03-18 |
 | 2. People and Items UI | 0/TBD | Not started | - |
 | 3. Tip, Tax, and Results | 0/TBD | Not started | - |
 | 4. Mobile Polish | 0/TBD | Not started | - |
