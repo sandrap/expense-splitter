@@ -29,7 +29,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. `calculateResults()` produces correct totals in integer-cent arithmetic for any split scenario
   4. Unit tests pass for 2-way, 3-way, and 7-way splits, verifying that per-person shares always sum to the item total (largest-remainder rounding)
   5. The project runs locally with `npm run dev` and deploys as static files
-**Plans**: TBD
+**Plans:** 2 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Scaffold project, define types, create Zustand store with tested actions
+- [ ] 01-02-PLAN.md — TDD calculation engine: cents helpers, distribution, calculateResults()
 
 ### Phase 2: People and Items UI
 **Goal**: Users can enter everyone at the table and every item on the receipt, with assignments, before calculating anything
@@ -73,7 +77,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/TBD | Not started | - |
+| 1. Foundation | 0/2 | Planning complete | - |
 | 2. People and Items UI | 0/TBD | Not started | - |
 | 3. Tip, Tax, and Results | 0/TBD | Not started | - |
 | 4. Mobile Polish | 0/TBD | Not started | - |
