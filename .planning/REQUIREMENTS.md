@@ -13,10 +13,10 @@
 
 ### Items
 
-- [ ] **ITEMS-01**: User can add a receipt item with a name and price
-- [ ] **ITEMS-02**: User can edit or delete an item after adding it
-- [ ] **ITEMS-03**: User can assign an item to one or more specific people
-- [ ] **ITEMS-04**: User can mark an item as shared among a chosen subset of people (e.g. shared appetizer split between Sarah and Mike only)
+- [x] **ITEMS-01**: User can add a receipt item with a name and price
+- [x] **ITEMS-02**: User can edit or delete an item after adding it
+- [x] **ITEMS-03**: User can assign an item to one or more specific people
+- [x] **ITEMS-04**: User can mark an item as shared among a chosen subset of people (e.g. shared appetizer split between Sarah and Mike only)
 
 ### Tip
 
@@ -63,10 +63,10 @@
 | PEOPLE-01 | Phase 2 | Complete |
 | PEOPLE-02 | Phase 2 | Complete |
 | PEOPLE-03 | Phase 2 | Complete |
-| ITEMS-01 | Phase 2 | Pending |
-| ITEMS-02 | Phase 2 | Pending |
-| ITEMS-03 | Phase 2 | Pending |
-| ITEMS-04 | Phase 2 | Pending |
+| ITEMS-01 | Phase 2 | Complete |
+| ITEMS-02 | Phase 2 | Complete |
+| ITEMS-03 | Phase 2 | Complete |
+| ITEMS-04 | Phase 2 | Complete |
 | TIP-01 | Phase 3 | Pending |
 | TAX-01 | Phase 3 | Pending |
 | RESULTS-01 | Phase 3 | Pending |
