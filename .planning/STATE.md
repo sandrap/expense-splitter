@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Phase 03 UI-SPEC approved
-last_updated: "2026-03-18T22:24:31.236Z"
-last_activity: 2026-03-18 — Completed Plan 02-02 (Items panel with assignment chips, split mode, unassigned warning)
+status: in-progress
+stopped_at: Completed 03-01-PLAN.md
+last_updated: "2026-03-18T23:05:55.786Z"
+last_activity: 2026-03-18 — Completed Plan 03-01 (Per-person tip overrides in model, store, and engine)
 progress:
   total_phases: 4
   completed_phases: 2
-  total_plans: 4
-  completed_plans: 4
-  percent: 100
+  total_plans: 7
+  completed_plans: 5
+  percent: 71
 ---
 
 # Project State
@@ -21,21 +21,21 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-18)
 
 **Core value:** Every person pays exactly what they owe — no more, no less — even when shared appetizers, per-person tip preferences, and tax make it complicated.
-**Current focus:** Phase 2 complete — ready for Phase 3
+**Current focus:** Phase 3 in progress — tip, tax, and results
 
 ## Current Position
 
-Phase: 2 of 4 (People and Items UI) -- COMPLETE
-Plan: 2 of 2 in current phase (02-02 complete)
-Status: Phase 2 complete
-Last activity: 2026-03-18 — Completed Plan 02-02 (Items panel with assignment chips, split mode, unassigned warning)
+Phase: 3 of 4 (Tip, Tax, and Results)
+Plan: 1 of 3 in current phase (03-01 complete)
+Status: Phase 3 in progress
+Last activity: 2026-03-18 — Completed Plan 03-01 (Per-person tip overrides in model, store, and engine)
 
-Progress: [██████████] 100%
+Progress: [███████░░░] 71%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
+- Total plans completed: 5
 - Average duration: 3 min
 - Total execution time: 0.2 hours
 
@@ -52,6 +52,7 @@ Progress: [██████████] 100%
 
 *Updated after each plan completion*
 | Phase 02-people-and-items-ui P02 | 2 min | 2 tasks | 6 files |
+| Phase 03-tip-tax-and-results P01 | 2 min | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -71,6 +72,8 @@ Recent decisions affecting current work:
 - [Phase 01-foundation]: Tip = subtotal * tipRate only (pre-tax) — both tip and tax are independent functions of subtotal
 - [Phase 02-01]: Exclude test files from tsconfig.app.json build target rather than adding vitest types globally
 - [Phase 02-people-and-items-ui]: ItemRow 'Remove' button text kept short to fit inline layout; AssignmentChips is pure presentational component with people/assignedTo/onToggle props
+- [Phase 03-01]: tipOverrides uses optional chaining with nullish coalescing so zero tip override is valid (not treated as falsy)
+- [Phase 03-01]: Per-person overrides pattern: Record<string, number> on state, cleanup on removePerson
 
 ### Pending Todos
 
@@ -83,6 +86,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-18T22:24:31.234Z
-Stopped at: Phase 03 UI-SPEC approved
-Resume file: .planning/phases/03-tip-tax-and-results/03-UI-SPEC.md
+Last session: 2026-03-18T23:05:19Z
+Stopped at: Completed 03-01-PLAN.md
+Resume file: .planning/phases/03-tip-tax-and-results/03-02-PLAN.md

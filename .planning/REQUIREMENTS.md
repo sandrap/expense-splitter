@@ -20,11 +20,11 @@
 
 ### Tip
 
-- [ ] **TIP-01**: User can set a tip percentage per person (each person's tip applies to their own subtotal)
+- [x] **TIP-01**: User can set a tip percentage per person (each person's tip applies to their own subtotal)
 
 ### Tax
 
-- [ ] **TAX-01**: User can set a single tax percentage applied to the whole bill, split proportionally
+- [x] **TAX-01**: User can set a single tax percentage applied to the whole bill, split proportionally
 
 ### Results
 
@@ -67,8 +67,8 @@
 | ITEMS-02 | Phase 2 | Complete |
 | ITEMS-03 | Phase 2 | Complete |
 | ITEMS-04 | Phase 2 | Complete |
-| TIP-01 | Phase 3 | Pending |
-| TAX-01 | Phase 3 | Pending |
+| TIP-01 | Phase 3 | Complete |
+| TAX-01 | Phase 3 | Complete |
 | RESULTS-01 | Phase 3 | Pending |
 | RESULTS-02 | Phase 3 | Pending |
 
