@@ -13,6 +13,7 @@ describe('calculateResults', () => {
         { id: 'i1', description: 'Pizza', priceInCents: 2000, splitMode: 'shared', assignedTo: [] },
       ],
       settings: { defaultTipPercent: 0, defaultTaxPercent: 0 },
+      tipOverrides: {},
     };
     const results = calculateResults(state);
     expect(results).toHaveLength(2);
@@ -35,6 +36,7 @@ describe('calculateResults', () => {
         { id: 'i1', description: 'Appetizer', priceInCents: 1000, splitMode: 'shared', assignedTo: [] },
       ],
       settings: { defaultTipPercent: 0, defaultTaxPercent: 0 },
+      tipOverrides: {},
     };
     const results = calculateResults(state);
     const totalCents = results.reduce((sum, r) => sum + r.totalInCents, 0);
@@ -50,6 +52,7 @@ describe('calculateResults', () => {
         { id: 'i1', description: 'Meal', priceInCents: 1000, splitMode: 'assigned', assignedTo: ['1'] },
       ],
       settings: { defaultTipPercent: 20, defaultTaxPercent: 10 },
+      tipOverrides: {},
     };
     const results = calculateResults(state);
     expect(results[0].subtotalInCents).toBe(1000);
@@ -69,6 +72,7 @@ describe('calculateResults', () => {
         { id: 'i1', description: 'Shared App', priceInCents: 1500, splitMode: 'shared', assignedTo: ['1', '2'] },
       ],
       settings: { defaultTipPercent: 0, defaultTaxPercent: 0 },
+      tipOverrides: {},
     };
     const results = calculateResults(state);
     const alice = results.find((r) => r.personId === '1')!;
@@ -90,6 +94,7 @@ describe('calculateResults', () => {
         { id: 'i1', description: 'Salad', priceInCents: 1200, splitMode: 'assigned', assignedTo: ['2'] },
       ],
       settings: { defaultTipPercent: 0, defaultTaxPercent: 0 },
+      tipOverrides: {},
     };
     const results = calculateResults(state);
     const alice = results.find((r) => r.personId === '1')!;
@@ -111,6 +116,7 @@ describe('calculateResults', () => {
         { id: 'i1', description: 'Bread', priceInCents: 900, splitMode: 'shared', assignedTo: [] },
       ],
       settings: { defaultTipPercent: 0, defaultTaxPercent: 0 },
+      tipOverrides: {},
     };
     const results = calculateResults(state);
     const shares = results.map((r) => r.subtotalInCents);
@@ -130,6 +136,7 @@ describe('calculateResults', () => {
         { id: 'i2', description: 'Salad', priceInCents: 800, splitMode: 'assigned', assignedTo: ['1'] },
       ],
       settings: { defaultTipPercent: 0, defaultTaxPercent: 10 },
+      tipOverrides: {},
     };
     const results = calculateResults(state);
     const alice = results.find((r) => r.personId === '1')!;
@@ -164,6 +171,7 @@ describe('calculateResults', () => {
         { id: 'i1', description: 'Big Item', priceInCents: 10000, splitMode: 'shared', assignedTo: [] },
       ],
       settings: { defaultTipPercent: 0, defaultTaxPercent: 0 },
+      tipOverrides: {},
     };
     const results = calculateResults(state);
     expect(results).toHaveLength(7);
@@ -178,6 +186,7 @@ describe('calculateResults', () => {
         { id: 'i1', description: 'Pizza', priceInCents: 2000, splitMode: 'shared', assignedTo: [] },
       ],
       settings: { defaultTipPercent: 18, defaultTaxPercent: 8 },
+      tipOverrides: {},
     };
     const results = calculateResults(state);
     expect(results).toEqual([]);
@@ -193,6 +202,7 @@ describe('calculateResults', () => {
         { id: 'i1', description: 'Unassigned', priceInCents: 1000, splitMode: 'assigned', assignedTo: [] },
       ],
       settings: { defaultTipPercent: 0, defaultTaxPercent: 0 },
+      tipOverrides: {},
     };
     const results = calculateResults(state);
     // Item contributes zero to all people (no one gets charged)
@@ -214,6 +224,7 @@ describe('calculateResults', () => {
         { id: 'i2', description: 'Salad', priceInCents: 800, splitMode: 'assigned', assignedTo: ['1'] },
       ],
       settings: { defaultTipPercent: 0, defaultTaxPercent: 0 },
+      tipOverrides: {},
     };
     const results = calculateResults(state);
     const alice = results.find((r) => r.personId === '1')!;
@@ -242,6 +253,7 @@ describe('calculateResults', () => {
       ],
       items: [],
       settings: { defaultTipPercent: 0, defaultTaxPercent: 0 },
+      tipOverrides: {},
     };
     const results = calculateResults(state);
     expect(results).toHaveLength(2);
@@ -249,5 +261,66 @@ describe('calculateResults', () => {
     expect(results[0].name).toBe('Alice');
     expect(results[1].personId).toBe('p2');
     expect(results[1].name).toBe('Bob');
+  });
+});
+
+describe('per-person tip overrides', () => {
+  it('uses tipOverride instead of defaultTipPercent when present', () => {
+    const state: AppState = {
+      people: [{ id: '1', name: 'Alice' }],
+      items: [
+        { id: 'i1', description: 'Meal', priceInCents: 1000, splitMode: 'assigned', assignedTo: ['1'] },
+      ],
+      settings: { defaultTipPercent: 18, defaultTaxPercent: 0 },
+      tipOverrides: { '1': 25 },
+    };
+    const results = calculateResults(state);
+    expect(results[0].tipInCents).toBe(250); // 25% of 1000, not 18%
+  });
+
+  it('falls back to defaultTipPercent when no override present', () => {
+    const state: AppState = {
+      people: [{ id: '1', name: 'Alice' }],
+      items: [
+        { id: 'i1', description: 'Meal', priceInCents: 1000, splitMode: 'assigned', assignedTo: ['1'] },
+      ],
+      settings: { defaultTipPercent: 18, defaultTaxPercent: 0 },
+      tipOverrides: {},
+    };
+    const results = calculateResults(state);
+    expect(results[0].tipInCents).toBe(180); // 18% of 1000
+  });
+
+  it('applies different tip rates to different people', () => {
+    const state: AppState = {
+      people: [
+        { id: '1', name: 'Alice' },
+        { id: '2', name: 'Bob' },
+      ],
+      items: [
+        { id: 'i1', description: 'Meal', priceInCents: 1000, splitMode: 'assigned', assignedTo: ['1'] },
+        { id: 'i2', description: 'Drink', priceInCents: 1000, splitMode: 'assigned', assignedTo: ['2'] },
+      ],
+      settings: { defaultTipPercent: 18, defaultTaxPercent: 0 },
+      tipOverrides: { '1': 25 },
+    };
+    const results = calculateResults(state);
+    const alice = results.find((r) => r.personId === '1')!;
+    const bob = results.find((r) => r.personId === '2')!;
+    expect(alice.tipInCents).toBe(250); // 25% of 1000
+    expect(bob.tipInCents).toBe(180);   // 18% of 1000 (default)
+  });
+
+  it('allows tipOverride of 0 (zero tip is valid)', () => {
+    const state: AppState = {
+      people: [{ id: '1', name: 'Alice' }],
+      items: [
+        { id: 'i1', description: 'Meal', priceInCents: 1000, splitMode: 'assigned', assignedTo: ['1'] },
+      ],
+      settings: { defaultTipPercent: 18, defaultTaxPercent: 0 },
+      tipOverrides: { '1': 0 },
+    };
+    const results = calculateResults(state);
+    expect(results[0].tipInCents).toBe(0); // 0% override, not default 18%
   });
 });

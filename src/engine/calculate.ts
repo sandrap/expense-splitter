@@ -77,8 +77,9 @@ export function calculateResults(state: AppState): PersonResult[] {
     const acc = accumulator.get(person.id)!;
     const subtotalInCents = acc.subtotalInCents;
 
-    // Tip: computed on pre-tax subtotal only
-    const tipInCents = Math.round(subtotalInCents * settings.defaultTipPercent / 100);
+    // Tip: computed on pre-tax subtotal only, using per-person override if present
+    const tipRate = state.tipOverrides?.[person.id] ?? settings.defaultTipPercent;
+    const tipInCents = Math.round(subtotalInCents * tipRate / 100);
     const taxInCents = taxShares[idx];
     const totalInCents = subtotalInCents + tipInCents + taxInCents;
 
