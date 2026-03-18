@@ -35,7 +35,7 @@ Declared values (must be multiples of 4):
 |-------|-------|-------|
 | xs | 4px | Icon gaps, inline padding within chips |
 | sm | 8px | Gap between chips, compact element margins |
-| md | 16px | Default element spacing, panel internal padding |
+| md | 16px | Default element spacing, panel internal padding, item list gap |
 | lg | 24px | Section padding (PeoplePanel, ItemsPanel) |
 | xl | 32px | Gap between major sections (people panel to items panel) |
 | 2xl | 48px | Not used in this phase |
@@ -50,15 +50,15 @@ Exceptions: Chip touch targets use `min-h-[44px] min-w-[44px]` per WCAG 2.5.5. T
 | Role | Size | Weight | Line Height |
 |------|------|--------|-------------|
 | Body | 16px | 400 (regular) | 1.5 |
-| Label | 14px | 500 (medium) | 1.4 |
-| Heading | 20px | 600 (semibold) | 1.2 |
+| Label | 14px | 400 (regular) | 1.4 |
+| Heading | 20px | 700 (bold) | 1.2 |
 | Display | 28px | 700 (bold) | 1.2 |
 
 **Usage in this phase:**
 - **Display (28px/700):** App title "Split the Bill" in the header
-- **Heading (20px/600):** Section headings "People" and "Items"
+- **Heading (20px/700):** Section headings "People" and "Items"
 - **Body (16px/400):** Person names, item descriptions, price values, input text
-- **Label (14px/500):** Chip text, warning labels ("Not assigned to anyone"), hint text ("Add people first to assign items"), input placeholders
+- **Label (14px/400):** Chip text, warning labels ("Not assigned to anyone"), hint text ("Add people first to assign items"), input placeholders
 
 **Font stack:** `system-ui, 'Segoe UI', Roboto, sans-serif` -- inherited from existing project, no web font download needed.
 
@@ -103,7 +103,7 @@ Exceptions: Chip touch targets use `min-h-[44px] min-w-[44px]` per WCAG 2.5.5. T
 - Main content: `p-4 space-y-6` (24px gap between panels)
 
 ### PeoplePanel
-- Section heading: "People" at heading size (20px/600)
+- Section heading: "People" at heading size (20px/700)
 - Add form: single text input + "Add Person" button, horizontal layout on one line
 - Input placeholder: "Enter name"
 - Button style: accent background (`bg-blue-500 text-white`), rounded (`rounded-lg`), `px-4 py-2`
@@ -114,17 +114,17 @@ Exceptions: Chip touch targets use `min-h-[44px] min-w-[44px]` per WCAG 2.5.5. T
 - Name display: body text (16px/400), clickable for inline edit
 - Inline edit: on click/tap, text becomes an input field. Save on blur or Enter. Cancel on Escape.
 - Edit input: bordered (`border border-gray-300`), rounded (`rounded`), `px-2 py-1`
-- Delete button: text "Remove" or trash icon area, destructive color (`text-red-500`), minimum 44px touch target
+- Delete button: text "Remove Person", destructive color (`text-red-500`), minimum 44px touch target
 - Row padding: `py-2 px-3`
 
 ### ItemsPanel
-- Section heading: "Items" at heading size (20px/600)
+- Section heading: "Items" at heading size (20px/700)
 - Add form: two inputs (description + price) + "Add Item" button
 - Description input placeholder: "Item name"
 - Price input placeholder: "$0.00"
 - Price input: `inputMode="decimal"` for mobile numeric keyboard
 - Button style: same as PeoplePanel add button
-- Item list: vertical stack with `space-y-3` (12px gaps, slightly more than people to accommodate chips)
+- Item list: vertical stack with `space-y-4` (16px gaps, provides breathing room for chip rows within each item)
 - Empty state (no items): "No items yet. Add receipt items above."
 - Empty state (no people exist): Items panel shows hint below assignment area: "Add people first to assign items"
 
@@ -142,7 +142,7 @@ Exceptions: Chip touch targets use `min-h-[44px] min-w-[44px]` per WCAG 2.5.5. T
 - Container: `flex flex-wrap gap-1.5` (6px gap between chips)
 - Chip size: `min-h-[44px] min-w-[44px] px-3 py-1.5` (44px minimum touch target)
 - Chip shape: `rounded-full`
-- Chip text: label size (14px/500)
+- Chip text: label size (14px/400)
 - Active chip: `bg-blue-500 text-white`
 - Inactive chip: `bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300`
 - Transition: `transition-colors` for smooth toggle feedback
@@ -168,12 +168,13 @@ Exceptions: Chip touch targets use `min-h-[44px] min-w-[44px]` per WCAG 2.5.5. T
 | Unassigned item warning | Not assigned to anyone |
 | Split mode label — shared | Shared |
 | Split mode label — assigned | Assigned |
+| Remove person button | Remove Person |
 | Remove person confirmation | No confirmation required (immediate removal, undo not in scope for this phase) |
 | Remove item confirmation | No confirmation required (immediate removal) |
 | Price parse error | Enter a valid price (e.g. 12.50) |
 
 **Destructive actions in this phase:**
-1. **Remove person** -- immediate, no confirmation dialog. Rationale: low data loss (just a name), and the store already cleans up item assignments automatically.
+1. **Remove Person** -- immediate, no confirmation dialog. Rationale: low data loss (just a name), and the store already cleans up item assignments automatically.
 2. **Remove item** -- immediate, no confirmation dialog. Rationale: quick re-entry is easy; modal confirmations slow down restaurant-table usage.
 
 ---
