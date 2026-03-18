@@ -1,5 +1,7 @@
 import { PeoplePanel } from './components/PeoplePanel';
 import { ItemsPanel } from './components/ItemsPanel';
+import { SettingsPanel } from './components/SettingsPanel';
+import { ResultsPanel } from './components/ResultsPanel';
 
 function App() {
   return (
@@ -10,6 +12,8 @@ function App() {
       <main className="max-w-lg mx-auto p-4 space-y-6">
         <PeoplePanel />
         <ItemsPanel />
+        <SettingsPanel />
+        <ResultsPanel />
       </main>
     </div>
   );
