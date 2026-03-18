@@ -60,11 +60,12 @@ Plans:
   2. User can set a single tax percentage for the whole bill, split proportionally across everyone
   3. The app displays the final amount each person owes, prominently
   4. Each person's row expands to show an itemized breakdown: what they had, their share of tax, and their tip amount
-**Plans:** 2 plans
+**Plans:** 3 plans
 
 Plans:
 - [ ] 03-01-PLAN.md — Engine + store changes: add tipOverrides to AppState, store actions, and per-person tip override in calculateResults
 - [ ] 03-02-PLAN.md — UI components: SettingsPanel (tip presets + tax input), ResultsPanel with expandable PersonResultCard and grand total
+- [ ] 03-03-PLAN.md — Hardening: input validation edge cases, accessibility fixes (aria-label/labelledby), isCustom initialization, section spacing, integration tests
 
 ### Phase 4: Mobile Polish
 **Goal**: The app is fast and error-free on a real phone at a restaurant table
@@ -87,5 +88,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | --- | --- | --- | --- |
 | 1. Foundation | 2/2 | Complete    | 2026-03-18 |
 | 2. People and Items UI | 0/2 | Not started | - |
-| 3. Tip, Tax, and Results | 0/2 | Not started | - |
+| 3. Tip, Tax, and Results | 0/3 | Not started | - |
 | 4. Mobile Polish | 0/TBD | Not started | - |
