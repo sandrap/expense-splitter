@@ -12,7 +12,7 @@ Four phases deliver a correct, fast, mobile-friendly bill splitter. The calculat
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - Data model, Zustand store, and pure calculation engine with integer-cent arithmetic
+- [x] **Phase 1: Foundation** - Data model, Zustand store, and pure calculation engine with integer-cent arithmetic (completed 2026-03-18)
 - [ ] **Phase 2: People and Items UI** - Complete input surface for adding people, items, and assigning who had what
 - [ ] **Phase 3: Tip, Tax, and Results** - Per-person tip, proportional tax, and itemized per-person totals
 - [ ] **Phase 4: Mobile Polish** - Touch UX, keyboard occlusion, edge cases, and real-device QA
@@ -29,7 +29,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. `calculateResults()` produces correct totals in integer-cent arithmetic for any split scenario
   4. Unit tests pass for 2-way, 3-way, and 7-way splits, verifying that per-person shares always sum to the item total (largest-remainder rounding)
   5. The project runs locally with `npm run dev` and deploys as static files
-**Plans:** 2 plans
+**Plans:** 2/2 plans complete
 
 Plans:
 - [x] 01-01-PLAN.md — Scaffold project, define types, create Zustand store with tested actions
@@ -77,7 +77,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 | --- | --- | --- | --- |
-| 1. Foundation | 1/2 | In progress | - |
+| 1. Foundation | 2/2 | Complete   | 2026-03-18 |
 | 2. People and Items UI | 0/TBD | Not started | - |
 | 3. Tip, Tax, and Results | 0/TBD | Not started | - |
 | 4. Mobile Polish | 0/TBD | Not started | - |
