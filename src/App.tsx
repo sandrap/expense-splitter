@@ -1,4 +1,5 @@
 import { PeoplePanel } from './components/PeoplePanel';
+import { ItemsPanel } from './components/ItemsPanel';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       </header>
       <main className="max-w-lg mx-auto p-4 space-y-6">
         <PeoplePanel />
+        <ItemsPanel />
       </main>
     </div>
   );
