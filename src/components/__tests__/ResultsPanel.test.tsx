@@ -59,7 +59,7 @@ describe('ResultsPanel', () => {
     expect(screen.queryByText('Subtotal')).not.toBeInTheDocument();
 
     // Click the expand button
-    const expandBtn = screen.getByRole('button', { name: /toggle/i });
+    const expandBtn = screen.getByRole('button', { name: /expand.*breakdown|collapse.*breakdown/i });
     await user.click(expandBtn);
 
     // After expand, breakdown items visible
@@ -86,7 +86,7 @@ describe('ResultsPanel', () => {
     useBillStore.getState().addItem('Pizza', 2000);
     render(<ResultsPanel />);
 
-    const expandBtn = screen.getByRole('button', { name: /toggle/i });
+    const expandBtn = screen.getByRole('button', { name: /expand.*breakdown|collapse.*breakdown/i });
     await user.click(expandBtn);
 
     expect(screen.getByText(/Tip/)).toBeInTheDocument();

@@ -52,14 +52,14 @@ export function PersonResultCard({
   return (
     <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-gray-50 dark:bg-gray-800">
       <div className="flex items-center justify-between">
-        <span className="text-base">{result.name}</span>
+        <span id={`person-name-${result.personId}`} className="text-base">{result.name}</span>
         <div className="flex items-center gap-2">
           <span className="text-[28px] font-bold leading-[1.2]">
             {formatCents(result.totalInCents)}
           </span>
           <button
             aria-expanded={isExpanded}
-            aria-label="Toggle breakdown"
+            aria-label={`${isExpanded ? 'Collapse' : 'Expand'} breakdown for ${result.name}`}
             onClick={onToggle}
             className="min-h-[44px] min-w-[44px] flex items-center justify-center"
           >
@@ -73,6 +73,7 @@ export function PersonResultCard({
       </div>
       {isExpanded && (
         <div
+          aria-labelledby={`person-name-${result.personId}`}
           className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700"
           onClick={(e) => e.stopPropagation()}
         >

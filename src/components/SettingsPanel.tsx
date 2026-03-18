@@ -7,8 +7,12 @@ export function SettingsPanel() {
   const settings = useBillStore((s) => s.settings);
   const updateSettings = useBillStore((s) => s.updateSettings);
 
-  const [isCustom, setIsCustom] = useState(false);
-  const [customDraft, setCustomDraft] = useState('');
+  const [isCustom, setIsCustom] = useState(
+    () => !(PRESETS as readonly number[]).includes(settings.defaultTipPercent)
+  );
+  const [customDraft, setCustomDraft] = useState(
+    () => (PRESETS as readonly number[]).includes(settings.defaultTipPercent) ? '' : String(settings.defaultTipPercent)
+  );
   const [taxDraft, setTaxDraft] = useState(
     String(settings.defaultTaxPercent || '')
   );
@@ -24,8 +28,10 @@ export function SettingsPanel() {
 
   const handleCustomCommit = () => {
     const val = parseFloat(customDraft);
-    if (!isNaN(val) && val >= 0) {
+    if (!isNaN(val) && val >= 0 && val <= 100) {
       updateSettings({ defaultTipPercent: val });
+    } else {
+      setCustomDraft(String(settings.defaultTipPercent));
     }
   };
 
@@ -39,7 +45,7 @@ export function SettingsPanel() {
 
   const handleTaxCommit = () => {
     const val = parseFloat(taxDraft);
-    if (!isNaN(val) && val >= 0) {
+    if (!isNaN(val) && val >= 0 && val <= 100) {
       updateSettings({ defaultTaxPercent: val });
     } else {
       setTaxDraft(String(settings.defaultTaxPercent || ''));
