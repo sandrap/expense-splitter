@@ -1,5 +1,5 @@
 ---
-gsd_state_version: 1.0
+gsd_state_version: 1
 milestone: v1.0
 milestone_name: milestone
 status: planning
@@ -13,7 +13,6 @@ progress:
   completed_plans: 0
   percent: 0
 ---
-
 # Project State
 
 ## Project Reference
@@ -42,8 +41,7 @@ Progress: [░░░░░░░░░░] 0%
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
-|-------|-------|-------|----------|
-| - | - | - | - |
+| --- | --- | --- | --- |
 
 **Recent Trend:**
 - Last 5 plans: -
