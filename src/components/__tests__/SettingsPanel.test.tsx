@@ -76,3 +76,60 @@ describe('SettingsPanel', () => {
     expect(useBillStore.getState().settings.defaultTaxPercent).toBe(8.875);
   });
 });
+
+describe('input validation edge cases', () => {
+  it('rejects empty custom tip input on Enter', async () => {
+    const user = userEvent.setup();
+    render(<SettingsPanel />);
+    await user.click(screen.getByRole('radio', { name: 'Custom %' }));
+    // Input starts empty; press Enter directly
+    await user.keyboard('{Enter}');
+    expect(useBillStore.getState().settings.defaultTipPercent).toBe(18);
+  });
+
+  it('rejects negative custom tip input', async () => {
+    const user = userEvent.setup();
+    render(<SettingsPanel />);
+    await user.click(screen.getByRole('radio', { name: 'Custom %' }));
+    const input = screen.getByPlaceholderText('%');
+    await user.type(input, '-5{Enter}');
+    expect(useBillStore.getState().settings.defaultTipPercent).toBe(18);
+  });
+
+  it('rejects tip percentage over 100', async () => {
+    const user = userEvent.setup();
+    render(<SettingsPanel />);
+    await user.click(screen.getByRole('radio', { name: 'Custom %' }));
+    const input = screen.getByPlaceholderText('%');
+    await user.type(input, '200{Enter}');
+    expect(useBillStore.getState().settings.defaultTipPercent).toBe(18);
+  });
+
+  it('rejects non-numeric tax input', async () => {
+    const user = userEvent.setup();
+    render(<SettingsPanel />);
+    const taxInput = screen.getByPlaceholderText('0');
+    await user.type(taxInput, 'abc{Enter}');
+    expect(useBillStore.getState().settings.defaultTaxPercent).toBe(0);
+  });
+
+  it('rejects negative tax input', async () => {
+    const user = userEvent.setup();
+    render(<SettingsPanel />);
+    const taxInput = screen.getByPlaceholderText('0');
+    await user.type(taxInput, '-1{Enter}');
+    expect(useBillStore.getState().settings.defaultTaxPercent).toBe(0);
+  });
+});
+
+describe('isCustom initialization', () => {
+  it('shows custom input on mount when defaultTipPercent is non-preset', () => {
+    useBillStore.setState({
+      settings: { defaultTipPercent: 22, defaultTaxPercent: 0 },
+    });
+    render(<SettingsPanel />);
+    expect(screen.getByRole('radio', { name: 'Custom %' })).toHaveAttribute('aria-checked', 'true');
+    expect(screen.getByPlaceholderText('%')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('%')).toHaveValue('22');
+  });
+});

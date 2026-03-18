@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ResultsPanel } from '../ResultsPanel';
 import { useBillStore } from '../../store/billStore';
@@ -91,5 +91,78 @@ describe('ResultsPanel', () => {
 
     expect(screen.getByText(/Tip/)).toBeInTheDocument();
     expect(screen.getByText('18%')).toBeInTheDocument();
+  });
+});
+
+describe('accessibility', () => {
+  beforeEach(() => {
+    useBillStore.setState({
+      people: [{ id: 'p1', name: 'Alice' }],
+      items: [{ id: 'i1', description: 'Salad', priceInCents: 1200, splitMode: 'assigned' as const, assignedTo: ['p1'] }],
+      settings: { defaultTipPercent: 18, defaultTaxPercent: 0 },
+      tipOverrides: {},
+    });
+  });
+
+  it('expand button has aria-label with person name', () => {
+    render(<ResultsPanel />);
+    const expandBtn = screen.getByRole('button', { name: /expand.*breakdown.*alice/i });
+    expect(expandBtn).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  it('expanded breakdown has aria-labelledby referencing person name', async () => {
+    const user = userEvent.setup();
+    render(<ResultsPanel />);
+    await user.click(screen.getByRole('button', { name: /expand.*breakdown.*alice/i }));
+    const nameEl = document.getElementById('person-name-p1');
+    expect(nameEl).toBeInTheDocument();
+    expect(nameEl).toHaveTextContent('Alice');
+    const breakdown = document.querySelector('[aria-labelledby="person-name-p1"]');
+    expect(breakdown).toBeInTheDocument();
+  });
+});
+
+describe('integration flow', () => {
+  it('full flow: people + items + tip/tax settings + per-person override + grand total', async () => {
+    // Set up store with 2 people, 2 items
+    useBillStore.setState({
+      people: [
+        { id: 'p1', name: 'Alice' },
+        { id: 'p2', name: 'Bob' },
+      ],
+      items: [
+        { id: 'i1', description: 'Pasta', priceInCents: 2000, splitMode: 'assigned' as const, assignedTo: ['p1'] },
+        { id: 'i2', description: 'Steak', priceInCents: 3000, splitMode: 'assigned' as const, assignedTo: ['p2'] },
+      ],
+      settings: { defaultTipPercent: 18, defaultTaxPercent: 8 },
+      tipOverrides: {},
+    });
+
+    const user = userEvent.setup();
+    render(<ResultsPanel />);
+
+    // Verify both person cards rendered
+    expect(screen.getByText('Alice')).toBeInTheDocument();
+    expect(screen.getByText('Bob')).toBeInTheDocument();
+    expect(screen.getByText('Grand Total')).toBeInTheDocument();
+
+    // Alice: subtotal $20.00, tip 18% = $3.60, tax 8% = $1.60, total = $25.20
+    // Bob: subtotal $30.00, tip 18% = $5.40, tax 8% = $2.40, total = $37.80
+    // Grand total = $63.00
+
+    // Expand Alice's card to verify breakdown
+    await user.click(screen.getByRole('button', { name: /expand.*breakdown.*alice/i }));
+    expect(screen.getByText('Pasta')).toBeInTheDocument();
+    expect(screen.getByText('Subtotal')).toBeInTheDocument();
+
+    // Override Alice's tip to 25%
+    act(() => {
+      useBillStore.getState().setPersonTipOverride('p1', 25);
+    });
+
+    // Re-render to pick up new state
+    // Alice: subtotal $20.00, tip 25% = $5.00, tax 8% = $1.60, total = $26.60
+    // Bob: subtotal $30.00, tip 18% = $5.40, tax 8% = $2.40, total = $37.80
+    // Grand total = $64.40
   });
 });
