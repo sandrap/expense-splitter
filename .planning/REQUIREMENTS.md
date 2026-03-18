@@ -49,7 +49,7 @@
 ## Out of Scope
 
 | Feature | Reason |
-|---------|--------|
+| --- | --- |
 | Native mobile app (iOS/Android) | Web-first covers the use case without the complexity |
 | User accounts / session persistence | Single-use per meal, no auth needed |
 | Payment integration (Venmo, Zelle) | Show what's owed, not how to pay |
@@ -59,18 +59,18 @@
 ## Traceability
 
 | Requirement | Phase | Status |
-|-------------|-------|--------|
-| PEOPLE-01 | Phase 1 | Pending |
-| PEOPLE-02 | Phase 1 | Pending |
-| PEOPLE-03 | Phase 1 | Pending |
-| ITEMS-01 | Phase 1 | Pending |
-| ITEMS-02 | Phase 1 | Pending |
-| ITEMS-03 | Phase 1 | Pending |
-| ITEMS-04 | Phase 1 | Pending |
-| TIP-01 | Phase 2 | Pending |
-| TAX-01 | Phase 2 | Pending |
-| RESULTS-01 | Phase 2 | Pending |
-| RESULTS-02 | Phase 2 | Pending |
+| --- | --- | --- |
+| PEOPLE-01 | Phase 2 | Pending |
+| PEOPLE-02 | Phase 2 | Pending |
+| PEOPLE-03 | Phase 2 | Pending |
+| ITEMS-01 | Phase 2 | Pending |
+| ITEMS-02 | Phase 2 | Pending |
+| ITEMS-03 | Phase 2 | Pending |
+| ITEMS-04 | Phase 2 | Pending |
+| TIP-01 | Phase 3 | Pending |
+| TAX-01 | Phase 3 | Pending |
+| RESULTS-01 | Phase 3 | Pending |
+| RESULTS-02 | Phase 3 | Pending |
 
 **Coverage:**
 - v1 requirements: 11 total
@@ -79,4 +79,4 @@
 
 ---
 *Requirements defined: 2026-03-18*
-*Last updated: 2026-03-18 after initial definition*
+*Last updated: 2026-03-18 after roadmap creation*
