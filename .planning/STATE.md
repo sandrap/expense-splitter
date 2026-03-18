@@ -2,16 +2,16 @@
 gsd_state_version: 1
 milestone: v1.0
 milestone_name: milestone
-status: planning
-stopped_at: Phase 1 context gathered
-last_updated: "2026-03-18T16:52:44.378Z"
-last_activity: 2026-03-18 — Roadmap created
+status: in-progress
+stopped_at: Completed 01-foundation-01-PLAN.md
+last_updated: "2026-03-18T21:02:00Z"
+last_activity: 2026-03-18 — Completed Plan 01-01 (scaffold, types, store, tests)
 progress:
   total_phases: 4
   completed_phases: 0
   total_plans: 0
-  completed_plans: 0
-  percent: 0
+  completed_plans: 1
+  percent: 5
 ---
 # Project State
 
@@ -25,27 +25,28 @@ See: .planning/PROJECT.md (updated 2026-03-18)
 ## Current Position
 
 Phase: 1 of 4 (Foundation)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-03-18 — Roadmap created
+Plan: 1 of TBD in current phase (01-01 complete)
+Status: In progress
+Last activity: 2026-03-18 — Completed Plan 01-01 (scaffold, types, store, tests)
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [░░░░░░░░░░] 5%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
-- Average duration: -
-- Total execution time: 0 hours
+- Total plans completed: 1
+- Average duration: 4 min
+- Total execution time: 0.07 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 | --- | --- | --- | --- |
+| 01-foundation | 1 | 4 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: -
-- Trend: -
+- Last 5 plans: 4 min
+- Trend: establishing baseline
 
 *Updated after each plan completion*
 
@@ -60,6 +61,8 @@ Recent decisions affecting current work:
 - All phases: client-side only, no backend, no persistence, static deployment
 - Phase 1: `Item.splitMode` is an explicit enum ('shared' | 'assigned'), not inferred from empty assignedTo[]
 - Phase 1: `PersonResult` is derived, never stored in state — totals can never be stale
+- Phase 1 (01-01): Zustand v5 setState(obj, true) replaces entire store including actions — use merge mode in tests to reset only data fields
+- Phase 1 (01-01): npm registry blocked by Cloudflare; yarnpkg.com used as alternative registry
 
 ### Pending Todos
 
@@ -67,11 +70,11 @@ None yet.
 
 ### Blockers/Concerns
 
-- Verify Zustand version: run `npm info zustand version` at project start to confirm v5.x is current
 - Cloudflare Pages SPA routing: verify `_redirects` config before deployment
+- npm registry blocked by Cloudflare; use yarnpkg.com registry for all npm installs in this environment
 
 ## Session Continuity
 
-Last session: 2026-03-18T16:52:44.373Z
-Stopped at: Phase 1 context gathered
-Resume file: .planning/phases/01-foundation/01-CONTEXT.md
+Last session: 2026-03-18T21:02:00Z
+Stopped at: Completed 01-foundation-01-PLAN.md
+Resume file: .planning/phases/01-foundation/01-02-PLAN.md

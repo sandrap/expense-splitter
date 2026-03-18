@@ -32,7 +32,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans:** 2 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Scaffold project, define types, create Zustand store with tested actions
+- [x] 01-01-PLAN.md — Scaffold project, define types, create Zustand store with tested actions
 - [ ] 01-02-PLAN.md — TDD calculation engine: cents helpers, distribution, calculateResults()
 
 ### Phase 2: People and Items UI
@@ -77,7 +77,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 | --- | --- | --- | --- |
-| 1. Foundation | 0/2 | Planning complete | - |
+| 1. Foundation | 1/2 | In progress | - |
 | 2. People and Items UI | 0/TBD | Not started | - |
 | 3. Tip, Tax, and Results | 0/TBD | Not started | - |
 | 4. Mobile Polish | 0/TBD | Not started | - |
