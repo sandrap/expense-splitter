@@ -57,11 +57,11 @@ Plans:
   2. User can open a history panel showing recent bills with name, date, and total
   3. User can tap a past bill in history and have it fully restored into the editor
   4. History entries persist across browser sessions (closing and reopening the tab)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 06-01: TBD
-- [ ] 06-02: TBD
+- [ ] 06-01-PLAN.md — History data layer: utility functions (save/load/upsert/eviction), loadBill store action, tests
+- [ ] 06-02-PLAN.md — History UI: useHistorySync hook, HistoryDrawer, RestoreConfirmDialog, wire into App.tsx
 
 ### Phase 7: Venmo Payments
 **Goal**: Users can request payment from each person at the table with one tap
