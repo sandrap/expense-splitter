@@ -3,6 +3,7 @@ import { useBillStore } from '../store/billStore';
 import { calculateResults } from '../engine/calculate';
 import { formatCents } from '../utils/formatCents';
 import { PersonResultCard } from './PersonResultCard';
+import { ShareButton } from './ShareButton';
 import type { PersonResult } from '../types/models';
 
 interface ResultsPanelProps {
@@ -78,6 +79,10 @@ export function ResultsPanel({ results, grandTotal, onPersonTipDraftChange, onPe
   return (
     <section className="space-y-4">
       <h2 className="text-[20px] font-bold leading-[1.2]">Results</h2>
+      <ShareButton
+        label="Share this split"
+        className="w-full bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white rounded-lg px-4 py-3 min-h-[44px] font-bold text-base"
+      />
       <div className="space-y-4">
         {displayResults.map((r) => (
           <PersonResultCard
