@@ -11,7 +11,7 @@ export interface ShareableState {
   tipOverrides: Record<string, number>;
 }
 
-interface CompactState {
+export interface CompactState {
   v: number;
   n: string;
   p: Array<{ i: string; n: string }>;
@@ -26,7 +26,7 @@ interface CompactState {
   o: Record<string, number>;
 }
 
-function toCompact(state: ShareableState): CompactState {
+export function toCompact(state: ShareableState): CompactState {
   return {
     v: SCHEMA_VERSION,
     n: state.billName,
@@ -46,7 +46,7 @@ function toCompact(state: ShareableState): CompactState {
   };
 }
 
-function fromCompact(c: CompactState): ShareableState {
+export function fromCompact(c: CompactState): ShareableState {
   return {
     billName: c.n ?? '',
     people: c.p.map((p) => ({ id: p.i, name: p.n })),
