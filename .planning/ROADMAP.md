@@ -88,5 +88,5 @@ Phases execute in numeric order: 5 -> 5.1 -> 5.2 -> 6 -> 7
 | 3. Tip, Tax, and Results | v1.0 | 3/3 | Complete | 2026-03-18 |
 | 4. Mobile Polish | v1.0 | 2/2 | Complete | 2026-03-19 |
 | 5. Bill Identity & URL Sharing | v1.1 | 0/2 | Not started | - |
-| 6. History | 1/2 | In Progress|  | - |
+| 6. History | v1.1 | 2/2 | Complete | 2026-03-19 |
 | 7. Venmo Payments | v1.1 | 0/1 | Not started | - |

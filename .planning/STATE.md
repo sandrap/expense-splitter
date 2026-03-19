@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Sharing & Payments
 status: completed
-stopped_at: Phase 6 UI-SPEC approved
-last_updated: "2026-03-19T17:44:36.209Z"
-last_activity: 2026-03-19 -- completed 05-02 bill identity & URL sharing UI
+stopped_at: Completed 06-02-PLAN.md
+last_updated: "2026-03-19T18:10:00.000Z"
+last_activity: 2026-03-19 -- completed 06-02 history UI
 progress:
   total_phases: 3
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 4
-  completed_plans: 3
-  percent: 78
+  completed_plans: 4
+  percent: 100
 ---
 
 # Project State
@@ -25,19 +25,19 @@ See: .planning/PROJECT.md (updated 2026-03-19)
 
 ## Current Position
 
-Phase: 6 of 7 (History)
-Plan: 1 of 2 in current phase -- COMPLETE
-Status: In Progress
-Last activity: 2026-03-19 -- completed 06-01 history data layer
+Phase: 6 of 7 (History) -- COMPLETE
+Plan: 2 of 2 in current phase -- COMPLETE
+Status: Phase 6 Complete
+Last activity: 2026-03-19 -- completed 06-02 history UI
 
-Progress: [████████████████░░░░] 80% (12/14 plans complete across all milestones)
+Progress: [██████████████████░░] 86% (13/15 plans complete across all milestones)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 10 (9 v1.0 + 1 v1.1)
-- Average duration: 2.7 min
-- Total execution time: 0.4 hours
+- Total plans completed: 12 (9 v1.0 + 3 v1.1)
+- Average duration: 2.8 min
+- Total execution time: 0.5 hours
 
 **By Phase:**
 
@@ -48,7 +48,7 @@ Progress: [████████████████░░░░] 80% (12
 | 03-tip-tax-and-results | 3 | 6 min | 2 min |
 | 04-mobile-polish | 2 | 4 min | 2 min |
 | 05-bill-identity-url-sharing | 1 | 2 min | 2 min |
-| 06-history | 1 | 2 min | 2 min |
+| 06-history | 2 | 6 min | 3 min |
 | 07-venmo-payments | 0 | - | - |
 
 **Recent Trend:**
@@ -58,6 +58,7 @@ Progress: [████████████████░░░░] 80% (12
 *Updated after each plan completion*
 | Phase 05 P02 | 6 min | 2 tasks | 9 files |
 | Phase 06 P01 | 2 min | 2 tasks | 5 files |
+| Phase 06 P02 | 4 min | 3 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -76,6 +77,8 @@ Recent decisions affecting current work:
 - [Phase 05]: userEvent.setup() stubs navigator.clipboard in jsdom -- mock writeText AFTER setup() call in tests
 - [06-01]: Export CompactState/toCompact/fromCompact from urlState.ts for history module reuse
 - [06-01]: Pure function approach for history ops; localStorage I/O isolated to loadHistory/saveHistory
+- [06-02]: Module-level session ID for history dedup (not Zustand, not localStorage)
+- [06-02]: resetSession() before loadBill() prevents stale debounce overwriting restored bill
 
 ### Pending Todos
 
@@ -90,6 +93,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-19T17:43:55Z
-Stopped at: Completed 06-01-PLAN.md
-Resume file: .planning/phases/06-history/06-01-SUMMARY.md
+Last session: 2026-03-19T18:10:00Z
+Stopped at: Completed 06-02-PLAN.md
+Resume file: .planning/phases/06-history/06-02-SUMMARY.md
