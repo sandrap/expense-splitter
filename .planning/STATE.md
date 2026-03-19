@@ -4,7 +4,7 @@ milestone: v1.0
 milestone_name: milestone
 status: completed
 stopped_at: Completed 04-02-PLAN.md — All plans complete
-last_updated: "2026-03-19T01:25:36.206Z"
+last_updated: "2026-03-19T01:37:09.244Z"
 last_activity: 2026-03-18 — Completed Plan 04-02 (Mobile UX Polish)
 progress:
   total_phases: 4
@@ -17,6 +17,11 @@ progress:
 # Project State
 
 ## Project Reference
+
+See: .planning/PROJECT.md (updated 2026-03-19 after v1.0)
+
+**Core value:** Every person pays exactly what they owe — no more, no less — even when shared appetizers, different tip preferences, and tax make it complicated.
+**Current focus:** Planning next milestone
 
 See: .planning/PROJECT.md (updated 2026-03-18)
 
