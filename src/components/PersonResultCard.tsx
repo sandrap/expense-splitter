@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { PersonResult } from '../types/models';
 import { formatCents } from '../utils/formatCents';
+import { VenmoButton } from './VenmoButton';
 
 interface PersonResultCardProps {
   result: PersonResult;
@@ -78,6 +79,7 @@ export function PersonResultCard({
           </button>
         </div>
       </div>
+      <VenmoButton amountInCents={result.totalInCents} personName={result.name} />
       {isExpanded && (
         <div
           aria-labelledby={`person-name-${result.personId}`}
