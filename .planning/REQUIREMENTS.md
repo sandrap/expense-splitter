@@ -22,8 +22,8 @@
 
 ### Payments
 
-- [ ] **PAY-01**: Each person's result card shows a Venmo deep link button to request their share
-- [ ] **PAY-02**: Venmo button is hidden when a person owes $0.00
+- [x] **PAY-01**: Each person's result card shows a Venmo deep link button to request their share
+- [x] **PAY-02**: Venmo button is hidden when a person owes $0.00
 
 ## v1.0 Requirements (Shipped)
 
@@ -51,8 +51,8 @@ All shipped and validated. See `.planning/milestones/v1.0-ROADMAP.md` for full d
 | HIST-01 | Phase 6 | Complete |
 | HIST-02 | Phase 6 | Complete |
 | HIST-03 | Phase 6 | Complete |
-| PAY-01 | Phase 7 | Pending |
-| PAY-02 | Phase 7 | Pending |
+| PAY-01 | Phase 7 | Complete |
+| PAY-02 | Phase 7 | Complete |
 
 **Coverage:**
 - v1.1 requirements: 8 total
