@@ -5,7 +5,7 @@ beforeEach(() => {
   // Reset only data fields — using merge mode (no second arg) preserves action functions.
   // Note: setState(obj, true) in Zustand v5 replaces the entire state including actions,
   // which causes "action is not a function" errors. Merge mode is correct for test reset.
-  useBillStore.setState({ people: [], items: [], settings: { defaultTipPercent: 18, defaultTaxPercent: 0 }, tipOverrides: {} });
+  useBillStore.setState({ billName: '', people: [], items: [], settings: { defaultTipPercent: 18, defaultTaxPercent: 0 }, tipOverrides: {} });
 });
 
 // Helper to get fresh state after each operation
@@ -155,5 +155,32 @@ describe('removePerson', () => {
     getStore().removePerson(aliceId);
     expect(getStore().tipOverrides[aliceId]).toBeUndefined();
     expect(getStore().tipOverrides).toEqual({});
+  });
+});
+
+describe('billName', () => {
+  it('has initial value of empty string', () => {
+    expect(getStore().billName).toBe('');
+  });
+
+  it('setBillName updates billName', () => {
+    getStore().setBillName('Dinner at Luigi');
+    expect(getStore().billName).toBe('Dinner at Luigi');
+  });
+
+  it('setBillName accepts empty string', () => {
+    getStore().setBillName('Something');
+    getStore().setBillName('');
+    expect(getStore().billName).toBe('');
+  });
+
+  it('setBillName does not affect other fields', () => {
+    getStore().addPerson('Alice');
+    getStore().setBillName('Lunch');
+    const { people, items, settings, tipOverrides } = getStore();
+    expect(people).toHaveLength(1);
+    expect(items).toHaveLength(0);
+    expect(settings.defaultTipPercent).toBe(18);
+    expect(tipOverrides).toEqual({});
   });
 });

@@ -2,10 +2,12 @@ import { create } from 'zustand';
 import type { Person, Item, BillSettings } from '../types/models';
 
 interface BillState {
+  billName: string;
   people: Person[];
   items: Item[];
   settings: BillSettings;
   tipOverrides: Record<string, number>;
+  setBillName: (name: string) => void;
   addPerson: (name: string) => void;
   removePerson: (id: string) => void;
   updatePerson: (id: string, updates: Partial<Person>) => void;
@@ -18,6 +20,7 @@ interface BillState {
 }
 
 export const useBillStore = create<BillState>()((set) => ({
+  billName: '',
   people: [],
   items: [],
   settings: {
@@ -25,6 +28,7 @@ export const useBillStore = create<BillState>()((set) => ({
     defaultTaxPercent: 0,
   },
   tipOverrides: {},
+  setBillName: (name) => set({ billName: name }),
   addPerson: (name) =>
     set((state) => ({
       people: [...state.people, { id: crypto.randomUUID(), name }],

@@ -17,6 +17,7 @@ export interface BillSettings {
 }
 
 export interface AppState {
+  billName: string;
   people: Person[];
   items: Item[];
   settings: BillSettings;
