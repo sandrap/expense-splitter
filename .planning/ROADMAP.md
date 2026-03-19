@@ -28,7 +28,7 @@ Full details: `.planning/milestones/v1.0-ROADMAP.md`
 - Decimal phases (5.1, 5.2): Urgent insertions (marked with INSERTED)
 
 - [ ] **Phase 5: Bill Identity & URL Sharing** — Name bills and share them via compressed URL
-- [ ] **Phase 6: History** — Auto-save bills to localStorage and restore past splits
+- [x] **Phase 6: History** — Auto-save bills to localStorage and restore past splits (completed 2026-03-19)
 - [ ] **Phase 7: Venmo Payments** — One-tap Venmo request links on each person's result card
 
 ## Phase Details
@@ -88,5 +88,5 @@ Phases execute in numeric order: 5 -> 5.1 -> 5.2 -> 6 -> 7
 | 3. Tip, Tax, and Results | v1.0 | 3/3 | Complete | 2026-03-18 |
 | 4. Mobile Polish | v1.0 | 2/2 | Complete | 2026-03-19 |
 | 5. Bill Identity & URL Sharing | v1.1 | 0/2 | Not started | - |
-| 6. History | v1.1 | 2/2 | Complete | 2026-03-19 |
+| 6. History | v1.1 | Complete    | 2026-03-19 | 2026-03-19 |
 | 7. Venmo Payments | v1.1 | 0/1 | Not started | - |
