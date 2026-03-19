@@ -7,12 +7,12 @@
 
 ### Bill Identity
 
-- [ ] **BILL-01**: User can optionally name the bill (displayed in history and shared URLs)
+- [x] **BILL-01**: User can optionally name the bill (displayed in history and shared URLs)
 
 ### URL Sharing
 
-- [ ] **SHARE-01**: User can generate and copy a shareable URL encoding the full bill state
-- [ ] **SHARE-02**: User can open a shared URL and have the full bill state loaded automatically
+- [x] **SHARE-01**: User can generate and copy a shareable URL encoding the full bill state
+- [x] **SHARE-02**: User can open a shared URL and have the full bill state loaded automatically
 
 ### History
 
@@ -45,9 +45,9 @@ All shipped and validated. See `.planning/milestones/v1.0-ROADMAP.md` for full d
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| BILL-01 | Phase 5 | Pending |
-| SHARE-01 | Phase 5 | Pending |
-| SHARE-02 | Phase 5 | Pending |
+| BILL-01 | Phase 5 | Complete |
+| SHARE-01 | Phase 5 | Complete |
+| SHARE-02 | Phase 5 | Complete |
 | HIST-01 | Phase 6 | Pending |
 | HIST-02 | Phase 6 | Pending |
 | HIST-03 | Phase 6 | Pending |

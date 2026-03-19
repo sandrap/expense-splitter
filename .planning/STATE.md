@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Sharing & Payments
-status: planning
-stopped_at: Phase 5 context gathered
-last_updated: "2026-03-19T15:32:45.299Z"
-last_activity: 2026-03-19 -- v1.1 roadmap created
+status: executing
+stopped_at: Completed 05-01-PLAN.md
+last_updated: "2026-03-19T16:16:37.370Z"
+last_activity: 2026-03-19 -- completed 05-01 store + URL serialization
 progress:
   total_phases: 3
   completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
+  total_plans: 2
+  completed_plans: 1
   percent: 64
 ---
 
@@ -26,16 +26,16 @@ See: .planning/PROJECT.md (updated 2026-03-19)
 ## Current Position
 
 Phase: 5 of 7 (Bill Identity & URL Sharing)
-Plan: 0 of 2 in current phase
-Status: Ready to plan
-Last activity: 2026-03-19 -- v1.1 roadmap created
+Plan: 1 of 2 in current phase
+Status: Executing
+Last activity: 2026-03-19 -- completed 05-01 store + URL serialization
 
-Progress: [████████████░░░░░░░░] 64% (9/14 plans complete across all milestones)
+Progress: [█████████████░░░░░░░] 71% (10/14 plans complete across all milestones)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 9 (v1.0)
+- Total plans completed: 10 (9 v1.0 + 1 v1.1)
 - Average duration: 2.7 min
 - Total execution time: 0.4 hours
 
@@ -47,12 +47,12 @@ Progress: [████████████░░░░░░░░] 64% (9/
 | 02-people-and-items-ui | 2 | 4 min | 2 min |
 | 03-tip-tax-and-results | 3 | 6 min | 2 min |
 | 04-mobile-polish | 2 | 4 min | 2 min |
-| 05-bill-identity-url-sharing | 0 | - | - |
+| 05-bill-identity-url-sharing | 1 | 2 min | 2 min |
 | 06-history | 0 | - | - |
 | 07-venmo-payments | 0 | - | - |
 
 **Recent Trend:**
-- Last 5 plans: 2 min, 2 min, 2 min, 3 min, 1 min
+- Last 5 plans: 2 min, 2 min, 3 min, 1 min, 2 min
 - Trend: Fast and stable
 
 *Updated after each plan completion*
@@ -69,6 +69,8 @@ Recent decisions affecting current work:
 - [v1.1 roadmap]: Manual localStorage subscription with debounce for history, NOT persist middleware (need multi-snapshot, not single-entry)
 - [v1.0]: integer-cent arithmetic is non-negotiable -- floating-point forbidden in calculation engine
 - [v1.0]: client-side only, no backend, static deployment
+- [05-01]: Schema version v:1 in compact URL format for future migration support
+- [05-01]: Keep original UUIDs in encoded state (compact keys + lz-string compression sufficient)
 
 ### Pending Todos
 
@@ -76,13 +78,13 @@ None yet.
 
 ### Blockers/Concerns
 
-- [Research]: Verify lz-string compression ratio on realistic bill data during Phase 5
+- [RESOLVED]: lz-string compression verified -- 6-person 12-item bill URL under 2000 chars
 - [Research]: Verify Venmo deep link format works on Android during Phase 7
 - [v1.0 debt]: PersonResultCard Escape key on tip edit deletes committed override instead of cancelling
 - [Infra]: npm registry blocked by Cloudflare; use yarnpkg.com registry for all npm installs
 
 ## Session Continuity
 
-Last session: 2026-03-19T15:32:45.296Z
-Stopped at: Phase 5 context gathered
-Resume file: .planning/phases/05-bill-identity-url-sharing/05-CONTEXT.md
+Last session: 2026-03-19T16:15:50Z
+Stopped at: Completed 05-01-PLAN.md
+Resume file: .planning/phases/05-bill-identity-url-sharing/05-02-PLAN.md
