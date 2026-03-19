@@ -3,60 +3,59 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: sharing-and-payments
 status: in_progress
-stopped_at: Defining requirements for v1.1
-last_updated: "2026-03-19T02:00:00.000Z"
-last_activity: 2026-03-19 — Milestone v1.1 started
+stopped_at: Roadmap created for v1.1
+last_updated: "2026-03-19T03:00:00.000Z"
+last_activity: 2026-03-19 — v1.1 roadmap created
 progress:
-  total_phases: 0
-  completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
-  percent: 0
+  total_phases: 7
+  completed_phases: 4
+  total_plans: 14
+  completed_plans: 9
+  percent: 64
 ---
 
 # Project State
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-03-19 after v1.0)
+See: .planning/PROJECT.md (updated 2026-03-19)
 
-**Core value:** Every person pays exactly what they owe — no more, no less — even when shared appetizers, different tip preferences, and tax make it complicated.
-**Current focus:** Defining requirements for v1.1 (Sharing & Payments)
+**Core value:** Every person pays exactly what they owe -- no more, no less -- even when shared appetizers, different tip preferences, and tax make it complicated.
+**Current focus:** Phase 5 - Bill Identity & URL Sharing
 
 ## Current Position
 
-Phase: Not started (defining requirements)
-Plan: —
-Status: Defining requirements
-Last activity: 2026-03-19 — Milestone v1.1 started
+Phase: 5 of 7 (Bill Identity & URL Sharing)
+Plan: 0 of 2 in current phase
+Status: Ready to plan
+Last activity: 2026-03-19 -- v1.1 roadmap created
 
-Progress: [██████████] 100%
+Progress: [████████████░░░░░░░░] 64% (9/14 plans complete across all milestones)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 6
-- Average duration: 3 min
-- Total execution time: 0.2 hours
+- Total plans completed: 9 (v1.0)
+- Average duration: 2.7 min
+- Total execution time: 0.4 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
-| --- | --- | --- | --- |
+|-------|-------|-------|----------|
 | 01-foundation | 2 | 6 min | 3 min |
 | 02-people-and-items-ui | 2 | 4 min | 2 min |
+| 03-tip-tax-and-results | 3 | 6 min | 2 min |
+| 04-mobile-polish | 2 | 4 min | 2 min |
+| 05-bill-identity-url-sharing | 0 | - | - |
+| 06-history | 0 | - | - |
+| 07-venmo-payments | 0 | - | - |
 
 **Recent Trend:**
-- Last 5 plans: 4 min, 2 min, 2 min, 2 min
-- Trend: fast
+- Last 5 plans: 2 min, 2 min, 2 min, 3 min, 1 min
+- Trend: Fast and stable
 
 *Updated after each plan completion*
-| Phase 02-people-and-items-ui P02 | 2 min | 2 tasks | 6 files |
-| Phase 03-tip-tax-and-results P01 | 2 min | 2 tasks | 5 files |
-| Phase 03-tip-tax-and-results P02 | 2 min | 2 tasks | 6 files |
-| Phase 03-tip-tax-and-results P03 | 2 min | 2 tasks | 6 files |
-| Phase 04-mobile-polish P01 | 3 min | 2 tasks | 8 files |
-| Phase 04-mobile-polish P02 | 1 min | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -65,29 +64,11 @@ Progress: [██████████] 100%
 Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
-- All phases: integer-cent arithmetic is non-negotiable — floating-point forbidden in calculation engine
-- All phases: client-side only, no backend, no persistence, static deployment
-- Phase 1: `Item.splitMode` is an explicit enum ('shared' | 'assigned'), not inferred from empty assignedTo[]
-- Phase 1: `PersonResult` is derived, never stored in state — totals can never be stale
-- Phase 1 (01-01): Zustand v5 setState(obj, true) replaces entire store including actions — use merge mode in tests to reset only data fields
-- Phase 1 (01-01): npm registry blocked by Cloudflare; yarnpkg.com used as alternative registry
-- [Phase 01-foundation]: shared+empty-assignedTo=all-people; shared+IDs=subset; assigned+empty=skip-item (div-by-zero guard); assigned+IDs=those-people
-- [Phase 01-foundation]: Tax distributed proportionally by subtotal weights via distributeProportional — sum of individual taxes equals total tax exactly
-- [Phase 01-foundation]: Tip = subtotal * tipRate only (pre-tax) — both tip and tax are independent functions of subtotal
-- [Phase 02-01]: Exclude test files from tsconfig.app.json build target rather than adding vitest types globally
-- [Phase 02-people-and-items-ui]: ItemRow 'Remove' button text kept short to fit inline layout; AssignmentChips is pure presentational component with people/assignedTo/onToggle props
-- [Phase 03-01]: tipOverrides uses optional chaining with nullish coalescing so zero tip override is valid (not treated as falsy)
-- [Phase 03-01]: Per-person overrides pattern: Record<string, number> on state, cleanup on removePerson
-- [Phase 03-02]: Grand total is sum of PersonResult.totalInCents, not independently calculated (avoids rounding drift)
-- [Phase 03-02]: Expand/collapse state kept in local useState (Set<string>), not global store (purely UI state)
-- [Phase 03-03]: Tip/tax validation caps at 100% to prevent absurd values
-- [Phase 03-03]: isCustom initialized via PRESETS.includes check, not hardcoded false
-- [Phase 03-03]: aria-label on expand button is dynamic with person name
-- [Phase 04-01]: Dual-track state pattern: ephemeral drafts in hook state, committed values in Zustand store
-- [Phase 04-01]: ResultsPanel falls back to computing results from store when props not passed (backward compat)
-- [Phase 04-01]: All draft callback props are optional (?:) so components work standalone in tests
-- [Phase 04-02]: scrollIntoView uses optional chaining for jsdom compatibility in tests
-- [Phase 04-02]: Dark mode requires no code changes -- Tailwind v4 @import enables media dark mode by default
+- [v1.1 roadmap]: Bill name merged with URL sharing phase (coarse granularity; bill name is trivial and URL sharing uses it immediately)
+- [v1.1 roadmap]: One-shot encode/decode for URL sharing, NOT Zustand persist middleware (research: persist causes URL flickering)
+- [v1.1 roadmap]: Manual localStorage subscription with debounce for history, NOT persist middleware (need multi-snapshot, not single-entry)
+- [v1.0]: integer-cent arithmetic is non-negotiable -- floating-point forbidden in calculation engine
+- [v1.0]: client-side only, no backend, static deployment
 
 ### Pending Todos
 
@@ -95,11 +76,13 @@ None yet.
 
 ### Blockers/Concerns
 
-- Cloudflare Pages SPA routing: verify `_redirects` config before deployment
-- npm registry blocked by Cloudflare; use yarnpkg.com registry for all npm installs in this environment
+- [Research]: Verify lz-string compression ratio on realistic bill data during Phase 5
+- [Research]: Verify Venmo deep link format works on Android during Phase 7
+- [v1.0 debt]: PersonResultCard Escape key on tip edit deletes committed override instead of cancelling
+- [Infra]: npm registry blocked by Cloudflare; use yarnpkg.com registry for all npm installs
 
 ## Session Continuity
 
-Last session: 2026-03-19T01:19:00Z
-Stopped at: Completed 04-02-PLAN.md — All plans complete
-Resume file: .planning/phases/04-mobile-polish/04-02-SUMMARY.md
+Last session: 2026-03-19
+Stopped at: v1.1 roadmap created, ready to plan Phase 5
+Resume file: None

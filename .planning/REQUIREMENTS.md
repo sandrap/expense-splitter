@@ -1,7 +1,7 @@
 # Requirements: Expense Splitter
 
 **Defined:** 2026-03-19
-**Core Value:** Every person pays exactly what they owe — no more, no less — even when shared appetizers, different tip preferences, and tax make it complicated.
+**Core Value:** Every person pays exactly what they owe -- no more, no less -- even when shared appetizers, different tip preferences, and tax make it complicated.
 
 ## v1.1 Requirements (Sharing & Payments)
 
@@ -43,24 +43,22 @@ All shipped and validated. See `.planning/milestones/v1.0-ROADMAP.md` for full d
 
 ## Traceability
 
-*Populated during roadmap creation.*
-
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| BILL-01 | — | Pending |
-| SHARE-01 | — | Pending |
-| SHARE-02 | — | Pending |
-| HIST-01 | — | Pending |
-| HIST-02 | — | Pending |
-| HIST-03 | — | Pending |
-| PAY-01 | — | Pending |
-| PAY-02 | — | Pending |
+| BILL-01 | Phase 5 | Pending |
+| SHARE-01 | Phase 5 | Pending |
+| SHARE-02 | Phase 5 | Pending |
+| HIST-01 | Phase 6 | Pending |
+| HIST-02 | Phase 6 | Pending |
+| HIST-03 | Phase 6 | Pending |
+| PAY-01 | Phase 7 | Pending |
+| PAY-02 | Phase 7 | Pending |
 
 **Coverage:**
 - v1.1 requirements: 8 total
-- Mapped to phases: 0
-- Unmapped: 8 ⚠️
+- Mapped to phases: 8
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-19*
-*Last updated: 2026-03-19 after initial v1.1 definition*
+*Last updated: 2026-03-19 after roadmap creation*
