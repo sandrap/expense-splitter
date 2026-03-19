@@ -42,11 +42,11 @@ Full details: `.planning/milestones/v1.0-ROADMAP.md`
   2. User can tap a Share button and get a URL copied to clipboard that encodes the full bill state
   3. User can open a shared URL in a new browser and see the complete bill loaded with all people, items, assignments, and tip overrides intact
   4. User can edit a bill loaded from a shared URL (it behaves identically to a manually-created bill)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 05-01: TBD
-- [ ] 05-02: TBD
+- [ ] 05-01-PLAN.md — Extend store/types with billName; implement urlState encode/decode utility with tests
+- [ ] 05-02-PLAN.md — Build BillName, ShareButton, Toast, ShareFallbackModal components; wire into App.tsx and ResultsPanel.tsx; URL hydration on mount
 
 ### Phase 6: History
 **Goal**: Users never lose a bill -- recent splits are auto-saved and can be browsed and restored
