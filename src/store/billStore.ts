@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import type { Person, Item, BillSettings } from '../types/models';
+import type { ShareableState } from '../utils/urlState';
 
 interface BillState {
   billName: string;
@@ -17,6 +18,7 @@ interface BillState {
   updateSettings: (updates: Partial<BillSettings>) => void;
   setPersonTipOverride: (personId: string, tipPercent: number) => void;
   clearPersonTipOverride: (personId: string) => void;
+  loadBill: (bill: ShareableState) => void;
 }
 
 export const useBillStore = create<BillState>()((set) => ({
@@ -82,5 +84,13 @@ export const useBillStore = create<BillState>()((set) => ({
     set((state) => {
       const { [personId]: _, ...rest } = state.tipOverrides;
       return { tipOverrides: rest };
+    }),
+  loadBill: (bill) =>
+    set({
+      billName: bill.billName,
+      people: bill.people,
+      items: bill.items,
+      settings: bill.settings,
+      tipOverrides: bill.tipOverrides ?? {},
     }),
 }));

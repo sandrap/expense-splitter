@@ -158,6 +158,53 @@ describe('removePerson', () => {
   });
 });
 
+describe('loadBill', () => {
+  it('replaces all data fields atomically', () => {
+    getStore().addPerson('Alice');
+    getStore().setBillName('Old bill');
+
+    const bill = {
+      billName: 'Dinner at Luigi',
+      people: [{ id: 'p1', name: 'Bob' }, { id: 'p2', name: 'Carol' }],
+      items: [{ id: 'i1', description: 'Pizza', priceInCents: 2400, splitMode: 'shared' as const, assignedTo: [] }],
+      settings: { defaultTipPercent: 20, defaultTaxPercent: 8.875 },
+      tipOverrides: { p1: 25 },
+    };
+
+    getStore().loadBill(bill);
+    const state = getStore();
+    expect(state.billName).toBe('Dinner at Luigi');
+    expect(state.people).toEqual(bill.people);
+    expect(state.items).toEqual(bill.items);
+    expect(state.settings).toEqual(bill.settings);
+    expect(state.tipOverrides).toEqual({ p1: 25 });
+  });
+
+  it('preserves action functions after load', () => {
+    getStore().loadBill({
+      billName: 'Test',
+      people: [],
+      items: [],
+      settings: { defaultTipPercent: 18, defaultTaxPercent: 0 },
+      tipOverrides: {},
+    });
+    getStore().addPerson('Dave');
+    expect(getStore().people).toHaveLength(1);
+    expect(getStore().people[0].name).toBe('Dave');
+  });
+
+  it('defaults tipOverrides to empty object when missing', () => {
+    const bill = {
+      billName: '',
+      people: [],
+      items: [],
+      settings: { defaultTipPercent: 18, defaultTaxPercent: 0 },
+    } as any;
+    getStore().loadBill(bill);
+    expect(getStore().tipOverrides).toEqual({});
+  });
+});
+
 describe('billName', () => {
   it('has initial value of empty string', () => {
     expect(getStore().billName).toBe('');
