@@ -33,11 +33,12 @@ Declared values (must be multiples of 4):
 |-------|-------|-------|
 | xs | 4px | Inline icon gaps, tight padding (px-1, py-1) |
 | sm | 8px | Compact element spacing, chip gaps (gap-2, py-2, mt-2) |
-| md | 12px | Card internal padding (p-3, px-3) |
-| lg | 16px | Section padding, panel padding (p-4, space-y-4) |
-| xl | 32px | Major section breaks (space-y-8) |
+| md | 16px | Card internal padding, section padding, panel padding (p-4, px-4, space-y-4) |
+| lg | 32px | Major section breaks (space-y-8) |
 
 Exceptions: 44px minimum touch target dimension (min-h-[44px], min-w-[44px]) for all interactive elements. This is a mobile accessibility requirement, not a spacing token.
+
+Note: Previous `p-3`/`px-3`/`gap-3` usage (12px) must be updated to `p-4`/`px-4`/`gap-4` (16px) during implementation to conform to this scale.
 
 ---
 
@@ -46,7 +47,7 @@ Exceptions: 44px minimum touch target dimension (min-h-[44px], min-w-[44px]) for
 | Role | Size | Weight | Line Height |
 |------|------|--------|-------------|
 | Body | 16px (text-base) | 400 (normal) | 1.5 |
-| Label / Detail | 14px (text-sm) | 500 (medium) | 1.5 |
+| Label / Detail | 14px (text-sm) | 400 (normal) | 1.5 |
 | Heading | 20px (text-[20px]) | 700 (bold) | 1.2 |
 | Display | 28px (text-[28px]) | 700 (bold) | 1.2 |
 
