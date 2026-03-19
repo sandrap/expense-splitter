@@ -22,6 +22,12 @@ export function ResultsPanel({ results, grandTotal, onPersonTipDraftChange, onPe
 
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
 
+  // Must be before early returns (Rules of Hooks)
+  const fallbackResults = useMemo(
+    () => calculateResults({ people, items, settings, tipOverrides }),
+    [people, items, settings, tipOverrides]
+  );
+
   const toggle = (id: string) => {
     setExpandedIds((prev) => {
       const next = new Set(prev);
@@ -66,10 +72,6 @@ export function ResultsPanel({ results, grandTotal, onPersonTipDraftChange, onPe
   }
 
   // Use props if provided, otherwise compute from store (backward compat for tests)
-  const fallbackResults = useMemo(
-    () => calculateResults({ people, items, settings, tipOverrides }),
-    [people, items, settings, tipOverrides]
-  );
   const displayResults = results ?? fallbackResults;
   const displayTotal = grandTotal ?? displayResults.reduce((sum, r) => sum + r.totalInCents, 0);
 
