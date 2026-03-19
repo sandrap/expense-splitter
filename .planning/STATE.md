@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Sharing & Payments
 status: completed
-stopped_at: Phase 6 context gathered
-last_updated: "2026-03-19T16:57:42.688Z"
+stopped_at: Phase 6 UI-SPEC approved
+last_updated: "2026-03-19T17:44:36.209Z"
 last_activity: 2026-03-19 -- completed 05-02 bill identity & URL sharing UI
 progress:
   total_phases: 3
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
+  total_plans: 4
+  completed_plans: 3
   percent: 78
 ---
 
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-19)
 
 **Core value:** Every person pays exactly what they owe -- no more, no less -- even when shared appetizers, different tip preferences, and tax make it complicated.
-**Current focus:** Phase 5 - Bill Identity & URL Sharing
+**Current focus:** Phase 6 - History
 
 ## Current Position
 
-Phase: 5 of 7 (Bill Identity & URL Sharing) -- COMPLETE
-Plan: 2 of 2 in current phase
-Status: Phase Complete
-Last activity: 2026-03-19 -- completed 05-02 bill identity & URL sharing UI
+Phase: 6 of 7 (History)
+Plan: 1 of 2 in current phase -- COMPLETE
+Status: In Progress
+Last activity: 2026-03-19 -- completed 06-01 history data layer
 
-Progress: [███████████████░░░░░] 78% (11/14 plans complete across all milestones)
+Progress: [████████████████░░░░] 80% (12/14 plans complete across all milestones)
 
 ## Performance Metrics
 
@@ -48,7 +48,7 @@ Progress: [███████████████░░░░░] 78% (11
 | 03-tip-tax-and-results | 3 | 6 min | 2 min |
 | 04-mobile-polish | 2 | 4 min | 2 min |
 | 05-bill-identity-url-sharing | 1 | 2 min | 2 min |
-| 06-history | 0 | - | - |
+| 06-history | 1 | 2 min | 2 min |
 | 07-venmo-payments | 0 | - | - |
 
 **Recent Trend:**
@@ -57,6 +57,7 @@ Progress: [███████████████░░░░░] 78% (11
 
 *Updated after each plan completion*
 | Phase 05 P02 | 6 min | 2 tasks | 9 files |
+| Phase 06 P01 | 2 min | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -73,6 +74,8 @@ Recent decisions affecting current work:
 - [05-01]: Schema version v:1 in compact URL format for future migration support
 - [05-01]: Keep original UUIDs in encoded state (compact keys + lz-string compression sufficient)
 - [Phase 05]: userEvent.setup() stubs navigator.clipboard in jsdom -- mock writeText AFTER setup() call in tests
+- [06-01]: Export CompactState/toCompact/fromCompact from urlState.ts for history module reuse
+- [06-01]: Pure function approach for history ops; localStorage I/O isolated to loadHistory/saveHistory
 
 ### Pending Todos
 
@@ -87,6 +90,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-19T16:57:42.685Z
-Stopped at: Phase 6 context gathered
-Resume file: .planning/phases/06-history/06-CONTEXT.md
+Last session: 2026-03-19T17:43:55Z
+Stopped at: Completed 06-01-PLAN.md
+Resume file: .planning/phases/06-history/06-01-SUMMARY.md

@@ -16,9 +16,9 @@
 
 ### History
 
-- [ ] **HIST-01**: App auto-saves recent bills to localStorage as the bill is edited
+- [x] **HIST-01**: App auto-saves recent bills to localStorage as the bill is edited
 - [ ] **HIST-02**: User can browse recent bills in a history panel (showing name, date, total)
-- [ ] **HIST-03**: User can restore a past bill from history into the editor
+- [x] **HIST-03**: User can restore a past bill from history into the editor
 
 ### Payments
 
@@ -48,9 +48,9 @@ All shipped and validated. See `.planning/milestones/v1.0-ROADMAP.md` for full d
 | BILL-01 | Phase 5 | Complete |
 | SHARE-01 | Phase 5 | Complete |
 | SHARE-02 | Phase 5 | Complete |
-| HIST-01 | Phase 6 | Pending |
+| HIST-01 | Phase 6 | Complete |
 | HIST-02 | Phase 6 | Pending |
-| HIST-03 | Phase 6 | Pending |
+| HIST-03 | Phase 6 | Complete |
 | PAY-01 | Phase 7 | Pending |
 | PAY-02 | Phase 7 | Pending |
 
