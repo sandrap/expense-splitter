@@ -124,6 +124,7 @@ export function SettingsPanel({ onTipDraftChange, onTipDraftClear, onTaxDraftCha
             }}
             onBlur={handleCustomCommit}
             onKeyDown={handleCustomKeyDown}
+            onFocus={(e) => setTimeout(() => e.target.scrollIntoView?.({ block: 'center', behavior: 'smooth' }), 100)}
           />
         )}
       </div>
@@ -141,6 +142,7 @@ export function SettingsPanel({ onTipDraftChange, onTipDraftClear, onTaxDraftCha
             }}
             onBlur={handleTaxCommit}
             onKeyDown={handleTaxKeyDown}
+            onFocus={(e) => setTimeout(() => e.target.scrollIntoView?.({ block: 'center', behavior: 'smooth' }), 100)}
           />
           <span className="text-base">%</span>
         </div>

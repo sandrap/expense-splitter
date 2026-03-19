@@ -72,7 +72,7 @@ But first - let me show you the roadmap so you know what to expect.
 This module has 5 lessons. Here's the full sequence:
 
 | Lesson | Command | What It Does |
-|--------|---------|--------------|
+| --- | --- | --- |
 | 3.1 | (this one) | Understand GSD, install it |
 | 3.2 | `/gsd:new-project` | GSD interviews you, researches, creates roadmap |
 | 3.3 | `/gsd:plan-phase 1` | Breaks phase into atomic task plans |
@@ -197,12 +197,12 @@ USER: Yes
 
 In the next lesson, you'll run `/gsd:new-project`. Here's what to expect:
 
-**The Interview (~3-5 minutes)**
+**The Interview (\~3-5 minutes)**
 - GSD asks about your project vision
 - You describe the Expense Splitter (use PROJECT_BRIEF.md as reference)
 - GSD clarifies features, tech preferences, scope
 
-**The Research Phase (~5-10 minutes)**
+**The Research Phase (\~5-10 minutes)**
 - GSD spawns up to 3 research subagents in parallel:
   - **Stack researcher** - best tech choices
   - **Features researcher** - common patterns and must-haves

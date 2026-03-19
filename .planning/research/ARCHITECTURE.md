@@ -116,7 +116,7 @@ interface PersonResult {
 ## Component Boundaries
 
 | Component | Responsibility | Reads From | Writes To |
-|-----------|---------------|------------|-----------|
+| --- | --- | --- | --- |
 | `App` | Layout shell, routing between entry and results view | `people.length`, `items.length` | — |
 | `PeoplePanel` | Add/remove/edit people, configure per-person tip/tax | `people[]`, `settings` | `people[]` |
 | `PersonCard` | Single person's name, tip/tax settings | one `Person` | `people[]` via actions |
@@ -349,7 +349,7 @@ Phase 6: Polish
 This is a single-session, single-device tool. Scalability concerns are narrow:
 
 | Concern | At typical use (2-10 people, 5-20 items) | At stress (50 people, 200 items) |
-|---------|------------------------------------------|----------------------------------|
+| --- | --- | --- |
 | Calculation performance | Instant, no concern | Still fast — O(people * items) |
 | Re-render frequency | Fine with basic React memoization | May need `useMemo` on results selector |
 | State size | Trivial | Still trivial for in-memory |

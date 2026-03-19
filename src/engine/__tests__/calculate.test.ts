@@ -264,6 +264,56 @@ describe('calculateResults', () => {
   });
 });
 
+describe('edge cases', () => {
+  it('returns empty array for zero people', () => {
+    const results = calculateResults({
+      people: [],
+      items: [{ id: 'i1', description: 'Pizza', priceInCents: 2000, splitMode: 'shared', assignedTo: [] }],
+      settings: { defaultTipPercent: 18, defaultTaxPercent: 10 },
+      tipOverrides: {},
+    });
+    expect(results).toEqual([]);
+  });
+
+  it('returns $0 per person when all items are assigned-mode with no assignees', () => {
+    const results = calculateResults({
+      people: [{ id: 'p1', name: 'Alice' }],
+      items: [{ id: 'i1', description: 'Pizza', priceInCents: 2000, splitMode: 'assigned', assignedTo: [] }],
+      settings: { defaultTipPercent: 18, defaultTaxPercent: 10 },
+      tipOverrides: {},
+    });
+    expect(results).toHaveLength(1);
+    expect(results[0].totalInCents).toBe(0);
+    expect(results[0].subtotalInCents).toBe(0);
+  });
+
+  it('returns $0 per person when all items are priced at $0', () => {
+    const results = calculateResults({
+      people: [{ id: 'p1', name: 'Alice' }, { id: 'p2', name: 'Bob' }],
+      items: [{ id: 'i1', description: 'Free sample', priceInCents: 0, splitMode: 'shared', assignedTo: [] }],
+      settings: { defaultTipPercent: 18, defaultTaxPercent: 10 },
+      tipOverrides: {},
+    });
+    expect(results).toHaveLength(2);
+    expect(results[0].totalInCents).toBe(0);
+    expect(results[1].totalInCents).toBe(0);
+  });
+
+  it('handles single person correctly', () => {
+    const results = calculateResults({
+      people: [{ id: 'p1', name: 'Alice' }],
+      items: [{ id: 'i1', description: 'Burger', priceInCents: 1000, splitMode: 'shared', assignedTo: [] }],
+      settings: { defaultTipPercent: 20, defaultTaxPercent: 10 },
+      tipOverrides: {},
+    });
+    expect(results).toHaveLength(1);
+    expect(results[0].subtotalInCents).toBe(1000);
+    expect(results[0].tipInCents).toBe(200);  // 1000 * 20%
+    expect(results[0].taxInCents).toBe(100);  // 1000 * 10%
+    expect(results[0].totalInCents).toBe(1300);
+  });
+});
+
 describe('per-person tip overrides', () => {
   it('uses tipOverride instead of defaultTipPercent when present', () => {
     const state: AppState = {

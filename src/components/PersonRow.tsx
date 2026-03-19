@@ -32,7 +32,7 @@ export function PersonRow({ person }: { person: Person }) {
   };
 
   return (
-    <div className="flex items-center justify-between py-2 px-3">
+    <div className="flex items-center justify-between py-2 px-4">
       {editing ? (
         <input
           autoFocus
@@ -40,12 +40,13 @@ export function PersonRow({ person }: { person: Person }) {
           onChange={(e) => setDraft(e.target.value)}
           onBlur={handleSave}
           onKeyDown={handleKeyDown}
+          onFocus={(e) => setTimeout(() => e.target.scrollIntoView?.({ block: 'center', behavior: 'smooth' }), 100)}
           className="border border-gray-300 dark:border-gray-600 rounded px-2 py-1 text-base bg-white dark:bg-gray-800"
         />
       ) : (
         <span
           onClick={() => setEditing(true)}
-          className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-1"
+          className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-2 min-h-[44px] inline-flex items-center"
         >
           {person.name}
         </span>

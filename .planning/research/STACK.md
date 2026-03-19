@@ -11,7 +11,7 @@
 ### Core Framework
 
 | Technology | Version | Purpose | Why |
-|------------|---------|---------|-----|
+| --- | --- | --- | --- |
 | React | 19.x (19.2 latest as of Oct 2025) | UI rendering and component model | Largest ecosystem, best tooling, React 19 brings first-class Actions and useOptimistic for snappy UI — valuable for real-time bill recalculation. Create React App is officially dead; Vite + React 19 is the current standard. |
 | TypeScript | 5.x | Type safety | Currency arithmetic and bill-splitting logic are bug-prone without types. Floating-point rounding errors surface immediately at compile time when types are enforced. Zero runtime cost. |
 
@@ -20,7 +20,7 @@
 ### Build Tool
 
 | Technology | Version | Purpose | Why |
-|------------|---------|---------|-----|
+| --- | --- | --- | --- |
 | Vite | 6.x | Dev server, bundler, static build output | Officially recommended by React docs for scratch builds (react.dev/learn/build-a-react-app-from-scratch). Fastest cold start and HMR of any current option. Produces static files deployable to any CDN. No server required. |
 
 **Confidence: HIGH** — Vite recommendation confirmed via official React documentation. Parcel and Rsbuild are valid alternatives but have smaller ecosystems for React.
@@ -28,7 +28,7 @@
 ### State Management
 
 | Technology | Version | Purpose | Why |
-|------------|---------|---------|-----|
+| --- | --- | --- | --- |
 | Zustand | 5.x | Global app state (bill items, people, tip/tax settings) | The bill data model is a single shared state tree that multiple components read and mutate (add person, add item, assign item, recalculate totals). Zustand is the current community consensus for this pattern: no boilerplate, works outside React (useful for pure calculation logic), and trivial to test. React Context + useReducer is a viable alternative but becomes painful with nested updates. |
 
 **Confidence: MEDIUM** — Zustand's dominance in 2025/2026 is training-data-based; official npm page was not accessible. Zustand v5 released in late 2024 with React 19 compatibility confirmed via community sources. Flag: verify `npm info zustand version` before project start.
@@ -36,7 +36,7 @@
 ### Styling
 
 | Technology | Version | Purpose | Why |
-|------------|---------|---------|-----|
+| --- | --- | --- | --- |
 | Tailwind CSS | 4.x (4.1+ recommended) | Utility-first styling, mobile-first responsive design | Confirmed v4.1 stable as of April 3, 2025 (tailwindcss.com/blog). New Vite plugin integration (`@tailwindcss/vite`) replaces PostCSS config — cleaner setup than v3. No `tailwind.config.js` needed. The zero-runtime approach is ideal for a static app. Mobile-first breakpoint system (`sm:`, `md:`) directly matches the project's "used at the table on phones" requirement. |
 
 **Confidence: HIGH** — Tailwind CSS v4.1 confirmed via official blog. Vite plugin integration confirmed via tailwindcss.com/docs/installation.
@@ -44,7 +44,7 @@
 ### Supporting Libraries
 
 | Library | Version | Purpose | When to Use |
-|---------|---------|---------|-------------|
+| --- | --- | --- | --- |
 | React Compiler | 1.0 (stable Oct 2025) | Automatic memoization of components | Add during setup. Eliminates manual `useMemo`/`useCallback` for calculation-heavy components. Confirmed stable with React 17+ compatibility. Production-tested at Meta with 12% performance improvement. |
 | Vitest | 2.x | Unit testing | Required for bill-splitting math. Floating-point arithmetic for tip/tax splitting MUST be tested. Use with `@testing-library/react` for component tests. |
 | @testing-library/react | 16.x | Component testing | Test item assignment flows and total calculation rendering. |
@@ -57,7 +57,7 @@
 ## Deployment
 
 | Platform | Why |
-|----------|-----|
+| --- | --- |
 | Cloudflare Pages (recommended) | Free tier, global CDN, deploys from git push, handles SPA routing with `_redirects` file. Since the app is used at the table on phones, edge-cached delivery worldwide matters for load time. |
 | Netlify (alternative) | Same static hosting story, also free tier. Slightly simpler `_redirects` config for SPA fallback. |
 | GitHub Pages (fallback) | Free, zero-config for public repos, but no edge CDN and SPA routing requires a workaround (404.html trick). |
@@ -69,7 +69,7 @@
 ## Alternatives Considered
 
 | Category | Recommended | Alternative | Why Not |
-|----------|-------------|-------------|---------|
+| --- | --- | --- | --- |
 | Framework | React 19 + Vite | Next.js | Next.js adds SSR complexity for no benefit — this is a client-side-only app with no server, no SEO requirements. The React docs explicitly note that "if your app has no constraints that these frameworks solve well, you might be better off with Vite." |
 | Framework | React 19 + Vite | SvelteKit | Svelte has better bundle size, but the React ecosystem is required for React Compiler, and the team familiarity assumption for most web developers favors React. |
 | Framework | React 19 + Vite | Preact | Preact's ~3kb vs React's ~45kb is irrelevant at this scale. Preact compatibility layer adds edge cases. React Compiler won't work. |
@@ -130,7 +130,7 @@ export default defineConfig({
 ## What NOT to Use
 
 | Technology | Reason to Avoid |
-|------------|-----------------|
+| --- | --- |
 | Create React App | Officially deprecated February 2025. Dead project, do not use. |
 | Redux / Redux Toolkit | 10x boilerplate for zero benefit at this app's complexity. Zustand is the current standard for non-Next.js React apps. |
 | CSS-in-JS (styled-components, Emotion) | Runtime cost, larger bundle, declining ecosystem. Tailwind v4 covers all styling needs. |
@@ -143,7 +143,7 @@ export default defineConfig({
 ## Sources
 
 | Source | Confidence | URL |
-|--------|------------|-----|
+| --- | --- | --- |
 | React 19 stable announcement | HIGH | https://react.dev/blog/2024/12/05/react-19 |
 | React 19.2 release (React blog) | HIGH | https://react.dev/blog (fetched 2026-03-18) |
 | React official build tool recommendations | HIGH | https://react.dev/learn/build-a-react-app-from-scratch |

@@ -87,7 +87,7 @@ export function ItemRow({ item, onDraftPriceChange, onDraftPriceClear }: ItemRow
 
   return (
     <div
-      className={`border rounded-lg p-3 ${
+      className={`border rounded-lg p-4 ${
         isUnassigned
           ? 'border-amber-400 bg-amber-50 dark:bg-amber-900/20'
           : 'border-gray-200 dark:border-gray-700'
@@ -103,12 +103,13 @@ export function ItemRow({ item, onDraftPriceChange, onDraftPriceClear }: ItemRow
               onChange={(e) => setDraftDesc(e.target.value)}
               onBlur={handleSaveDesc}
               onKeyDown={handleDescKeyDown}
+              onFocus={(e) => setTimeout(() => e.target.scrollIntoView?.({ block: 'center', behavior: 'smooth' }), 100)}
               className="border border-gray-300 dark:border-gray-600 rounded px-2 py-1 text-base bg-white dark:bg-gray-800 w-full"
             />
           ) : (
             <span
               onClick={() => setEditingDesc(true)}
-              className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-1"
+              className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-2 min-h-[44px] inline-flex items-center"
             >
               {item.description}
             </span>
@@ -127,6 +128,7 @@ export function ItemRow({ item, onDraftPriceChange, onDraftPriceClear }: ItemRow
                 }}
                 onBlur={handleSavePrice}
                 onKeyDown={handlePriceKeyDown}
+                onFocus={(e) => setTimeout(() => e.target.scrollIntoView?.({ block: 'center', behavior: 'smooth' }), 100)}
                 className="border border-gray-300 dark:border-gray-600 rounded px-2 py-1 text-base bg-white dark:bg-gray-800 w-24"
               />
               {priceError && (
@@ -139,7 +141,7 @@ export function ItemRow({ item, onDraftPriceChange, onDraftPriceClear }: ItemRow
                 setEditingPrice(true);
                 onDraftPriceChange?.(item.id, draftPrice);
               }}
-              className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-1"
+              className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-2 min-h-[44px] inline-flex items-center"
             >
               {formatCents(item.priceInCents)}
             </span>
@@ -147,7 +149,7 @@ export function ItemRow({ item, onDraftPriceChange, onDraftPriceClear }: ItemRow
         </div>
         <button
           onClick={() => removeItem(item.id)}
-          className="text-red-500 min-h-[44px]"
+          className="text-red-500 min-h-[44px] min-w-[44px]"
         >
           Remove
         </button>
@@ -159,8 +161,8 @@ export function ItemRow({ item, onDraftPriceChange, onDraftPriceClear }: ItemRow
           onClick={() => updateItem(item.id, { splitMode: 'shared' })}
           className={
             item.splitMode === 'shared'
-              ? 'font-medium text-blue-500'
-              : 'text-gray-500'
+              ? 'font-medium text-blue-500 min-h-[44px]'
+              : 'text-gray-500 min-h-[44px]'
           }
         >
           Shared
@@ -169,8 +171,8 @@ export function ItemRow({ item, onDraftPriceChange, onDraftPriceClear }: ItemRow
           onClick={() => updateItem(item.id, { splitMode: 'assigned' })}
           className={
             item.splitMode === 'assigned'
-              ? 'font-medium text-blue-500'
-              : 'text-gray-500'
+              ? 'font-medium text-blue-500 min-h-[44px]'
+              : 'text-gray-500 min-h-[44px]'
           }
         >
           Assigned

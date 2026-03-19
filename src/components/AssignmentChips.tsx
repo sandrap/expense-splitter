@@ -8,7 +8,7 @@ interface Props {
 
 export function AssignmentChips({ people, assignedTo, onToggle }: Props) {
   return (
-    <div className="flex flex-wrap gap-1.5">
+    <div className="flex flex-wrap gap-2">
       {people.map((person) => {
         const isAssigned = assignedTo.includes(person.id);
         return (

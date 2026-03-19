@@ -111,12 +111,13 @@ export function PersonResultCard({
                   }}
                   onBlur={handleTipCommit}
                   onKeyDown={handleTipKeyDown}
+                  onFocus={(e) => setTimeout(() => e.target.scrollIntoView?.({ block: 'center', behavior: 'smooth' }), 100)}
                   onClick={(e) => e.stopPropagation()}
                 />
               ) : (
                 <span
                   onClick={handleTipClick}
-                  className="cursor-pointer underline"
+                  className="cursor-pointer underline min-h-[44px] inline-flex items-center"
                 >
                   {currentTip}%
                 </span>

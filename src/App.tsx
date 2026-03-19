@@ -23,7 +23,7 @@ function App() {
       <header className="p-4 text-center border-b border-gray-200 dark:border-gray-700">
         <h1 className="text-[28px] font-bold leading-[1.2]">Split the Bill</h1>
       </header>
-      <main className="max-w-lg mx-auto p-4 space-y-8">
+      <main className="max-w-lg mx-auto p-4 space-y-8 scroll-pb-[40vh]">
         <PeoplePanel />
         <ItemsPanel
           onDraftPriceChange={setItemPriceDraft}

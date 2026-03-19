@@ -11,7 +11,7 @@
 Features users expect from any bill-splitting tool. Missing any of these causes immediate abandonment or frustration at the table.
 
 | Feature | Why Expected | Complexity | Notes |
-|---------|--------------|------------|-------|
+| --- | --- | --- | --- |
 | Add multiple people to a bill | Core of the entire use case | Low | Names only — no accounts needed |
 | Add line items with prices | Required to split by item | Low | Label + amount; quantity support is nice-to-have |
 | Assign items to one or more people | The fundamental split mechanic | Medium | Must support subset assignment (not just "split equally") |
@@ -33,7 +33,7 @@ Features users expect from any bill-splitting tool. Missing any of these causes 
 Features that are not universally present but provide meaningful value or competitive advantage. These move a tool from "adequate" to "recommended."
 
 | Feature | Value Proposition | Complexity | Notes |
-|---------|-------------------|------------|-------|
+| --- | --- | --- | --- |
 | Per-person tip percentage | Friends who tip differently (10% vs 20%) — currently the #1 unmet need in most tools | Medium | Each person's tip applies only to their own subtotal; must be obvious in the UI |
 | Per-person tax override | Some items are tax-exempt (e.g. to-go items in some states); power-user need | High | Edge case but signals attention to correctness; default is proportional, override is optional |
 | Shareable link / session URL | One person enters the bill, others open the same session to verify their amount | High | Requires state serialization to URL or minimal backend; eliminates "read me your total" friction |
@@ -54,7 +54,7 @@ Features that are not universally present but provide meaningful value or compet
 Features to deliberately NOT build for this product. These add complexity without serving the core at-table use case.
 
 | Anti-Feature | Why Avoid | What to Do Instead |
-|--------------|-----------|-------------------|
+| --- | --- | --- |
 | User accounts / login | Adds friction, not needed for single-session use — users abandon sign-up flows at the table | Use session-in-URL or anonymous local state |
 | Persistent bill history | Increases infrastructure complexity with near-zero user demand for this use case | Stateless — each bill is ephemeral |
 | Payment processing / Venmo/PayPal integration | Legal, compliance, and API complexity; users already have payment apps | Show amounts owed, not facilitate payment |
