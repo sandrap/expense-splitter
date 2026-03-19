@@ -34,8 +34,8 @@ Declared values (must be multiples of 4):
 | Token | Value | Usage |
 |-------|-------|-------|
 | xs | 4px | Not used this phase |
-| sm | 8px | Gap between Venmo icon and button label |
-| md | 16px | Vertical gap between dollar amount row and Venmo button; button horizontal padding |
+| sm | 8px | Gap between Venmo icon and button label; top margin between amount row and Venmo button |
+| md | 16px | Button horizontal padding |
 | lg | 24px | Not used this phase |
 | xl | 32px | Not used this phase |
 | 2xl | 48px | Not used this phase |
@@ -50,11 +50,11 @@ Exceptions: 44px minimum touch target height on the Venmo button (established pr
 | Role | Size | Weight | Line Height | Usage in This Phase |
 |------|------|--------|-------------|---------------------|
 | Body | 16px (`text-base`) | 400 (normal) | 1.5 | Not directly used for new elements |
-| Label | 14px (`text-sm`) | 600 (`font-semibold`) | 1.5 | Venmo button label "Pay with Venmo" |
+| Label | 14px (`text-sm`) | 700 (`font-bold`) | 1.5 | Venmo button label "Pay with Venmo" |
 | Heading | 20px (`text-[20px]`) | 700 (`font-bold`) | 1.2 | Not used this phase |
 | Display | 28px (`text-[28px]`) | 700 (`font-bold`) | 1.2 | Not used this phase (existing amount display) |
 
-Source: Button label uses `text-sm font-semibold` to differentiate from the dominant 28px total amount above it. The semibold weight (600) is appropriate for a CTA label -- the project uses 700 for headings/totals and 400 for body, so 600 occupies the CTA tier without conflicting.
+Source: Button label uses `text-sm font-bold` to differentiate from the dominant 28px total amount above it. Two weights only: 400 (body) and 700 (bold for labels, headings, and display).
 
 ---
 
@@ -101,10 +101,10 @@ Source: CONTEXT.md grants discretion on button styling and says "blue accent con
 **VenmoButton (inside PersonResultCard)**
 - Element: `<a>` tag, not `<button>` -- it navigates to an external URL
 - Position: Full-width below the name/amount row, above the expandable breakdown section
-- Margin: `mt-3` (12px, fits between card content sections)
+- Margin: `mt-2` (8px, token `sm`)
 - Size: `w-full min-h-[44px] flex items-center justify-center gap-2`
 - Background: `bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700`
-- Text: `text-white text-sm font-semibold`
+- Text: `text-white text-sm font-bold`
 - Shape: `rounded-lg`
 - Interaction: `active:scale-95 transition-transform`
 - Link behavior: `target="_blank" rel="noopener noreferrer"`
@@ -188,7 +188,7 @@ Source: CONTEXT.md locked "Pay with Venmo" as the button label, "Split bill" as 
 | Tap target | `min-h-[44px]` on the anchor element (project standard) |
 | Screen reader | `aria-label="Pay {person name} {formatted amount} with Venmo"` -- descriptive label including person name and amount for context when navigating by links |
 | External link | `target="_blank" rel="noopener noreferrer"` -- standard external link pattern |
-| Color contrast | White text on `blue-500` background: 3.8:1 ratio. Add `font-semibold` to meet WCAG AA for large text (14px bold qualifies). Blue-600 dark mode background improves to 4.3:1. |
+| Color contrast | White text on `blue-500` background: 3.8:1 ratio. Add `font-bold` to meet WCAG AA for large text (14px bold qualifies). Blue-600 dark mode background improves to 4.3:1. |
 | Focus visible | `focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500` for keyboard navigation |
 
 ---
