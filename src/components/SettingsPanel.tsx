@@ -3,7 +3,14 @@ import { useBillStore } from '../store/billStore';
 
 const PRESETS = [15, 18, 20, 25] as const;
 
-export function SettingsPanel() {
+interface SettingsPanelProps {
+  onTipDraftChange?: (draft: string) => void;
+  onTipDraftClear?: () => void;
+  onTaxDraftChange?: (draft: string) => void;
+  onTaxDraftClear?: () => void;
+}
+
+export function SettingsPanel({ onTipDraftChange, onTipDraftClear, onTaxDraftChange, onTaxDraftClear }: SettingsPanelProps = {}) {
   const settings = useBillStore((s) => s.settings);
   const updateSettings = useBillStore((s) => s.updateSettings);
 
@@ -20,18 +27,22 @@ export function SettingsPanel() {
   const handlePresetClick = (pct: number) => {
     setIsCustom(false);
     updateSettings({ defaultTipPercent: pct });
+    onTipDraftClear?.();
   };
 
   const handleCustomClick = () => {
     setIsCustom(true);
+    onTipDraftChange?.(customDraft);
   };
 
   const handleCustomCommit = () => {
     const val = parseFloat(customDraft);
     if (!isNaN(val) && val >= 0 && val <= 100) {
       updateSettings({ defaultTipPercent: val });
+      onTipDraftClear?.();
     } else {
       setCustomDraft(String(settings.defaultTipPercent));
+      onTipDraftClear?.();
     }
   };
 
@@ -47,8 +58,10 @@ export function SettingsPanel() {
     const val = parseFloat(taxDraft);
     if (!isNaN(val) && val >= 0 && val <= 100) {
       updateSettings({ defaultTaxPercent: val });
+      onTaxDraftClear?.();
     } else {
       setTaxDraft(String(settings.defaultTaxPercent || ''));
+      onTaxDraftClear?.();
     }
   };
 
@@ -105,7 +118,10 @@ export function SettingsPanel() {
             className="w-20 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-base bg-white dark:bg-gray-800 mt-2"
             placeholder="%"
             value={customDraft}
-            onChange={(e) => setCustomDraft(e.target.value)}
+            onChange={(e) => {
+              setCustomDraft(e.target.value);
+              onTipDraftChange?.(e.target.value);
+            }}
             onBlur={handleCustomCommit}
             onKeyDown={handleCustomKeyDown}
           />
@@ -119,7 +135,10 @@ export function SettingsPanel() {
             className="w-20 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-base bg-white dark:bg-gray-800"
             placeholder="0"
             value={taxDraft}
-            onChange={(e) => setTaxDraft(e.target.value)}
+            onChange={(e) => {
+              setTaxDraft(e.target.value);
+              onTaxDraftChange?.(e.target.value);
+            }}
             onBlur={handleTaxCommit}
             onKeyDown={handleTaxKeyDown}
           />

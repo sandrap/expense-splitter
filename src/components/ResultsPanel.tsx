@@ -1,10 +1,18 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useBillStore } from '../store/billStore';
 import { calculateResults } from '../engine/calculate';
 import { formatCents } from '../utils/formatCents';
 import { PersonResultCard } from './PersonResultCard';
+import type { PersonResult } from '../types/models';
 
-export function ResultsPanel() {
+interface ResultsPanelProps {
+  results?: PersonResult[];
+  grandTotal?: number;
+  onPersonTipDraftChange?: (personId: string, draft: string) => void;
+  onPersonTipDraftClear?: (personId: string) => void;
+}
+
+export function ResultsPanel({ results, grandTotal, onPersonTipDraftChange, onPersonTipDraftClear }: ResultsPanelProps = {}) {
   const people = useBillStore((s) => s.people);
   const items = useBillStore((s) => s.items);
   const settings = useBillStore((s) => s.settings);
@@ -57,14 +65,19 @@ export function ResultsPanel() {
     );
   }
 
-  const results = calculateResults({ people, items, settings, tipOverrides });
-  const grandTotal = results.reduce((sum, r) => sum + r.totalInCents, 0);
+  // Use props if provided, otherwise compute from store (backward compat for tests)
+  const fallbackResults = useMemo(
+    () => calculateResults({ people, items, settings, tipOverrides }),
+    [people, items, settings, tipOverrides]
+  );
+  const displayResults = results ?? fallbackResults;
+  const displayTotal = grandTotal ?? displayResults.reduce((sum, r) => sum + r.totalInCents, 0);
 
   return (
     <section className="space-y-4">
       <h2 className="text-[20px] font-bold leading-[1.2]">Results</h2>
       <div className="space-y-4">
-        {results.map((r) => (
+        {displayResults.map((r) => (
           <PersonResultCard
             key={r.personId}
             result={r}
@@ -74,13 +87,15 @@ export function ResultsPanel() {
             defaultTip={settings.defaultTipPercent}
             onTipOverride={(pct) => setPersonTipOverride(r.personId, pct)}
             onClearTipOverride={() => clearPersonTipOverride(r.personId)}
+            onTipDraftChange={onPersonTipDraftChange}
+            onTipDraftClear={onPersonTipDraftClear}
           />
         ))}
       </div>
       <div className="mt-4 pt-4 border-t-2 border-gray-300 dark:border-gray-600 flex justify-between">
         <span className="text-[20px] font-bold leading-[1.2]">Grand Total</span>
         <span className="text-[20px] font-bold leading-[1.2]">
-          {formatCents(grandTotal)}
+          {formatCents(displayTotal)}
         </span>
       </div>
     </section>

@@ -3,7 +3,12 @@ import { useBillStore } from '../store/billStore';
 import { parseDollarsToCents } from '../utils/parseDollars';
 import { ItemRow } from './ItemRow';
 
-export function ItemsPanel() {
+interface ItemsPanelProps {
+  onDraftPriceChange?: (itemId: string, draft: string) => void;
+  onDraftPriceClear?: (itemId: string) => void;
+}
+
+export function ItemsPanel({ onDraftPriceChange, onDraftPriceClear }: ItemsPanelProps = {}) {
   const items = useBillStore((s) => s.items);
   const addItem = useBillStore((s) => s.addItem);
   const [description, setDescription] = useState('');
@@ -70,7 +75,12 @@ export function ItemsPanel() {
       ) : (
         <div className="space-y-4 mt-3">
           {items.map((item) => (
-            <ItemRow key={item.id} item={item} />
+            <ItemRow
+              key={item.id}
+              item={item}
+              onDraftPriceChange={onDraftPriceChange}
+              onDraftPriceClear={onDraftPriceClear}
+            />
           ))}
         </div>
       )}

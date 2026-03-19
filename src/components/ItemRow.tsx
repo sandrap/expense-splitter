@@ -5,7 +5,13 @@ import { formatCents } from '../utils/formatCents';
 import { parseDollarsToCents } from '../utils/parseDollars';
 import { AssignmentChips } from './AssignmentChips';
 
-export function ItemRow({ item }: { item: Item }) {
+interface ItemRowProps {
+  item: Item;
+  onDraftPriceChange?: (itemId: string, draft: string) => void;
+  onDraftPriceClear?: (itemId: string) => void;
+}
+
+export function ItemRow({ item, onDraftPriceChange, onDraftPriceClear }: ItemRowProps) {
   const people = useBillStore((s) => s.people);
   const updateItem = useBillStore((s) => s.updateItem);
   const removeItem = useBillStore((s) => s.removeItem);
@@ -51,6 +57,7 @@ export function ItemRow({ item }: { item: Item }) {
       updateItem(item.id, { priceInCents: parsed });
       setPriceError('');
       setEditingPrice(false);
+      onDraftPriceClear?.(item.id);
     } else {
       setPriceError('Enter a valid price (e.g. 12.50)');
     }
@@ -60,6 +67,7 @@ export function ItemRow({ item }: { item: Item }) {
     setDraftPrice(formatCents(item.priceInCents).replace('$', ''));
     setPriceError('');
     setEditingPrice(false);
+    onDraftPriceClear?.(item.id);
   };
 
   const handlePriceKeyDown = (e: React.KeyboardEvent) => {
@@ -113,7 +121,10 @@ export function ItemRow({ item }: { item: Item }) {
                 autoFocus
                 inputMode="decimal"
                 value={draftPrice}
-                onChange={(e) => setDraftPrice(e.target.value)}
+                onChange={(e) => {
+                  setDraftPrice(e.target.value);
+                  onDraftPriceChange?.(item.id, e.target.value);
+                }}
                 onBlur={handleSavePrice}
                 onKeyDown={handlePriceKeyDown}
                 className="border border-gray-300 dark:border-gray-600 rounded px-2 py-1 text-base bg-white dark:bg-gray-800 w-24"
@@ -124,7 +135,10 @@ export function ItemRow({ item }: { item: Item }) {
             </div>
           ) : (
             <span
-              onClick={() => setEditingPrice(true)}
+              onClick={() => {
+                setEditingPrice(true);
+                onDraftPriceChange?.(item.id, draftPrice);
+              }}
               className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-1"
             >
               {formatCents(item.priceInCents)}

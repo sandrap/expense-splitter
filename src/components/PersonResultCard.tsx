@@ -10,6 +10,8 @@ interface PersonResultCardProps {
   defaultTip: number;
   onTipOverride: (tipPercent: number) => void;
   onClearTipOverride: () => void;
+  onTipDraftChange?: (personId: string, draft: string) => void;
+  onTipDraftClear?: (personId: string) => void;
 }
 
 export function PersonResultCard({
@@ -20,6 +22,8 @@ export function PersonResultCard({
   defaultTip,
   onTipOverride,
   onClearTipOverride,
+  onTipDraftChange,
+  onTipDraftClear,
 }: PersonResultCardProps) {
   const [editingTip, setEditingTip] = useState(false);
   const [tipDraft, setTipDraft] = useState('');
@@ -32,6 +36,7 @@ export function PersonResultCard({
       onTipOverride(val);
     }
     setEditingTip(false);
+    onTipDraftClear?.(result.personId);
   };
 
   const handleTipKeyDown = (e: React.KeyboardEvent) => {
@@ -40,6 +45,7 @@ export function PersonResultCard({
     } else if (e.key === 'Escape') {
       onClearTipOverride();
       setEditingTip(false);
+      onTipDraftClear?.(result.personId);
     }
   };
 
@@ -47,6 +53,7 @@ export function PersonResultCard({
     e.stopPropagation();
     setEditingTip(true);
     setTipDraft(String(currentTip));
+    onTipDraftChange?.(result.personId, String(currentTip));
   };
 
   return (
@@ -98,7 +105,10 @@ export function PersonResultCard({
                   inputMode="decimal"
                   className="w-12 border rounded px-1 text-sm"
                   value={tipDraft}
-                  onChange={(e) => setTipDraft(e.target.value)}
+                  onChange={(e) => {
+                    setTipDraft(e.target.value);
+                    onTipDraftChange?.(result.personId, e.target.value);
+                  }}
                   onBlur={handleTipCommit}
                   onKeyDown={handleTipKeyDown}
                   onClick={(e) => e.stopPropagation()}
