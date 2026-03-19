@@ -1,13 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { PeoplePanel } from './components/PeoplePanel';
 import { ItemsPanel } from './components/ItemsPanel';
 import { SettingsPanel } from './components/SettingsPanel';
 import { ResultsPanel } from './components/ResultsPanel';
 import { BillName } from './components/BillName';
 import { ShareButton } from './components/ShareButton';
+import { HistoryButton } from './components/HistoryButton';
+import { HistoryDrawer } from './components/HistoryDrawer';
 import { decodeState } from './utils/urlState';
 import { useBillStore } from './store/billStore';
 import { useDraftCalculation } from './hooks/useDraftCalculation';
+import { useHistorySync } from './hooks/useHistorySync';
 
 function App() {
   useEffect(() => {
@@ -17,6 +20,9 @@ function App() {
     if (!decoded) return;
     useBillStore.setState(decoded);
   }, []);
+
+  useHistorySync();
+  const [historyOpen, setHistoryOpen] = useState(false);
 
   const {
     results,
@@ -34,6 +40,9 @@ function App() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <header className="relative p-4 text-center border-b border-gray-200 dark:border-gray-700">
+        <div className="absolute left-4 top-1/2 -translate-y-1/2">
+          <HistoryButton onClick={() => setHistoryOpen(true)} />
+        </div>
         <h1 className="text-[28px] font-bold leading-[1.2]">Split the Bill</h1>
         <BillName />
         <div className="absolute right-4 top-1/2 -translate-y-1/2">
@@ -62,6 +71,7 @@ function App() {
           onPersonTipDraftClear={clearPersonTipDraft}
         />
       </main>
+      <HistoryDrawer isOpen={historyOpen} onClose={() => setHistoryOpen(false)} />
     </div>
   );
 }
