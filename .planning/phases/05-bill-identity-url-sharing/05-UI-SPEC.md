@@ -55,7 +55,7 @@ Exceptions: 44px minimum touch target dimension (min-h-[44px], min-w-[44px]) for
 |---------|------|--------|-------------|-------|
 | Bill name subtitle (named state) | 16px (text-base) | 400 (normal) | 1.5 | gray-900 / dark:gray-100 |
 | Bill name placeholder (unnamed state) | 16px (text-base) | 400 (normal) | 1.5 | gray-400 / dark:gray-500 |
-| Toast notification text | 14px (text-sm) | 600 (semibold) | 1.5 | white (#ffffff) |
+| Toast notification text | 14px (text-sm) | 700 (bold) | 1.5 | white (#ffffff) |
 | Modal heading | 20px (text-[20px]) | 700 (bold) | 1.2 | gray-900 / dark:gray-100 |
 | Modal body / URL text area | 14px (text-sm) | 400 (normal) | 1.5 | gray-700 / dark:gray-300 |
 
@@ -111,6 +111,7 @@ Accent reserved for: Share icon button in header, "Share this split" button in R
 | Location | Absolute positioned top-right of the header (right-4, vertically centered) |
 | Icon | Unicode U+1F517 (link emoji) OR SVG share icon (Claude's discretion) |
 | Size | min-h-[44px] min-w-[44px], flex items-center justify-center |
+| Accessibility | `aria-label="Share bill"` (required; icon-only button with no visible text) |
 | Style | text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 |
 | Background | transparent (no background fill) |
 | Border radius | rounded-lg |
@@ -124,7 +125,7 @@ Accent reserved for: Share icon button in header, "Share this split" button in R
 |----------|-------|
 | Location | Top of ResultsPanel, between the "Results" heading and the first PersonResultCard |
 | Visibility | Only visible when there are results to share (people > 0 AND items > 0) |
-| Style | w-full bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-3 min-h-[44px] font-semibold text-base |
+| Style | w-full bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-3 min-h-[44px] font-bold text-base |
 | Dark mode | dark:bg-blue-600 dark:hover:bg-blue-700 |
 | Label | "Share this split" |
 | Icon | None (text-only button) |
@@ -136,7 +137,7 @@ Accent reserved for: Share icon button in header, "Share this split" button in R
 | Location | Fixed bottom-center of viewport, 16px from bottom edge (bottom-4) |
 | Layout | Inline-flex items-center, px-4 py-2, rounded-lg, shadow-lg |
 | Background | bg-gray-900 dark:bg-gray-100 (inverted from page background) |
-| Text | "Link copied!" in white (dark: gray-900), text-sm font-semibold |
+| Text | "Link copied!" in white (dark: gray-900), text-sm font-bold |
 | Z-index | z-50 |
 | Animation | Fade in from bottom (translate-y-2 to translate-y-0, opacity-0 to opacity-100) over 200ms ease-out |
 | Auto-dismiss | Disappears after 2000ms with fade-out (opacity-100 to opacity-0) over 200ms ease-in |
@@ -151,7 +152,7 @@ Accent reserved for: Share icon button in header, "Share this split" button in R
 | Modal container | fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50, bg-white dark:bg-gray-800, rounded-xl, p-6, max-w-md w-[calc(100%-32px)], shadow-xl |
 | Heading | "Copy this link" at heading size (20px bold) |
 | URL text area | `<textarea>` with w-full, h-20, text-sm, font-mono, bg-gray-50 dark:bg-gray-900, border border-gray-200 dark:border-gray-700, rounded-lg, p-3, select-all on focus, read-only |
-| Close button | "Done" button at bottom-right, text-blue-500 hover:text-blue-600, min-h-[44px], text-base font-semibold |
+| Close button | "Got it" button at bottom-right, text-blue-500 hover:text-blue-600, min-h-[44px], text-base font-bold |
 | Keyboard | Escape key dismisses modal |
 
 ---
@@ -192,7 +193,7 @@ Accent reserved for: Share icon button in header, "Share this split" button in R
 | Bill name placeholder | "Tap to name this bill" |
 | Toast — success | "Link copied!" |
 | Modal — heading | "Copy this link" |
-| Modal — dismiss | "Done" |
+| Modal — dismiss | "Got it" |
 | Empty state heading (no data) | "No results yet" (unchanged from Phase 4) |
 | Empty state body (no data) | "Add people and items above to see what everyone owes." (unchanged) |
 | Empty state (people only) | "Add items to the bill to calculate results." (unchanged) |
