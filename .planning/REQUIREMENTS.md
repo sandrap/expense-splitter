@@ -1,82 +1,66 @@
 # Requirements: Expense Splitter
 
-**Defined:** 2026-03-18
-**Core Value:** Every person pays exactly what they owe — no more, no less — even when shared appetizers, per-person tip preferences, and tax make it complicated.
+**Defined:** 2026-03-19
+**Core Value:** Every person pays exactly what they owe — no more, no less — even when shared appetizers, different tip preferences, and tax make it complicated.
 
-## v1 Requirements
+## v1.1 Requirements (Sharing & Payments)
 
-### People
+### Bill Identity
 
-- [x] **PEOPLE-01**: User can add a person to the bill by entering their name
-- [x] **PEOPLE-02**: User can remove a person from the bill
-- [x] **PEOPLE-03**: User can edit a person's name after adding them
+- [ ] **BILL-01**: User can optionally name the bill (displayed in history and shared URLs)
 
-### Items
+### URL Sharing
 
-- [x] **ITEMS-01**: User can add a receipt item with a name and price
-- [x] **ITEMS-02**: User can edit or delete an item after adding it
-- [x] **ITEMS-03**: User can assign an item to one or more specific people
-- [x] **ITEMS-04**: User can mark an item as shared among a chosen subset of people (e.g. shared appetizer split between Sarah and Mike only)
+- [ ] **SHARE-01**: User can generate and copy a shareable URL encoding the full bill state
+- [ ] **SHARE-02**: User can open a shared URL and have the full bill state loaded automatically
 
-### Tip
+### History
 
-- [x] **TIP-01**: User can set a tip percentage per person (each person's tip applies to their own subtotal)
+- [ ] **HIST-01**: App auto-saves recent bills to localStorage as the bill is edited
+- [ ] **HIST-02**: User can browse recent bills in a history panel (showing name, date, total)
+- [ ] **HIST-03**: User can restore a past bill from history into the editor
 
-### Tax
+### Payments
 
-- [x] **TAX-01**: User can set a single tax percentage applied to the whole bill, split proportionally
+- [ ] **PAY-01**: Each person's result card shows a Venmo deep link button to request their share
+- [ ] **PAY-02**: Venmo button is hidden when a person owes $0.00
 
-### Results
+## v1.0 Requirements (Shipped)
 
-- [x] **RESULTS-01**: App displays the final amount each person owes
-- [x] **RESULTS-02**: App displays an itemized breakdown per person showing what they had, their share of tax, and their tip
-
-## v2 Requirements
-
-### Tip
-
-- **TIP-V2-01**: Bill-wide tip percentage (one rate for the whole table, split proportionally)
-
-### Tax
-
-- **TAX-V2-01**: Per-person tax override (each person sets their own tax rate)
-
-### Results
-
-- **RESULTS-V2-01**: Live recalculation as user types (totals update instantly)
-- **RESULTS-V2-02**: Shareable URL — one person enters the bill, others open a link to verify their amount
+All shipped and validated. See `.planning/milestones/v1.0-ROADMAP.md` for full details.
 
 ## Out of Scope
 
 | Feature | Reason |
-| --- | --- |
-| Native mobile app (iOS/Android) | Web-first covers the use case without the complexity |
-| User accounts / session persistence | Single-use per meal, no auth needed |
-| Payment integration (Venmo, Zelle) | Show what's owed, not how to pay |
-| Receipt scanning / OCR | Unreliable in dim restaurant lighting; manual entry is faster |
-| Real-time multi-user collaboration | Adds backend complexity; one person enters for the table |
+|---------|--------|
+| Clear URL after load | Nice-to-have cosmetic; adds complexity for minimal value |
+| Reset bill action | Refresh achieves the same result; deferred to v2 |
+| Multi-recipient Venmo batch request | Requires recipient username collection; adds complexity |
+| Real-time collaboration | Backend required; out of scope for client-side-only app |
+| Bill scanning / OCR | Manual entry for v1 |
+| Native mobile app | Web-first covers the use case |
+| User accounts | No persistence/auth needed; single-use per meal |
 
 ## Traceability
 
+*Populated during roadmap creation.*
+
 | Requirement | Phase | Status |
-| --- | --- | --- |
-| PEOPLE-01 | Phase 2 | Complete |
-| PEOPLE-02 | Phase 2 | Complete |
-| PEOPLE-03 | Phase 2 | Complete |
-| ITEMS-01 | Phase 2 | Complete |
-| ITEMS-02 | Phase 2 | Complete |
-| ITEMS-03 | Phase 2 | Complete |
-| ITEMS-04 | Phase 2 | Complete |
-| TIP-01 | Phase 3 | Complete |
-| TAX-01 | Phase 3 | Complete |
-| RESULTS-01 | Phase 3 | Complete |
-| RESULTS-02 | Phase 3 | Complete |
+|-------------|-------|--------|
+| BILL-01 | — | Pending |
+| SHARE-01 | — | Pending |
+| SHARE-02 | — | Pending |
+| HIST-01 | — | Pending |
+| HIST-02 | — | Pending |
+| HIST-03 | — | Pending |
+| PAY-01 | — | Pending |
+| PAY-02 | — | Pending |
 
 **Coverage:**
-- v1 requirements: 11 total
-- Mapped to phases: 11
-- Unmapped: 0 ✓
+- v1.1 requirements: 8 total
+- Mapped to phases: 0
+- Unmapped: 8 ⚠️
 
 ---
-*Requirements defined: 2026-03-18*
-*Last updated: 2026-03-18 after roadmap creation*
+*Requirements defined: 2026-03-19*
+*Last updated: 2026-03-19 after initial v1.1 definition*
