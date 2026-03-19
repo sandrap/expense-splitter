@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Phase 4 UI-SPEC approved
-last_updated: "2026-03-19T00:13:04.884Z"
-last_activity: 2026-03-18 — Completed Plan 03-03 (Hardening, Accessibility, and Integration Tests)
+status: in-progress
+stopped_at: Completed 04-01 Live Recalculation Hook
+last_updated: "2026-03-19T00:42:18.155Z"
+last_activity: 2026-03-18 — Completed Plan 04-01 (Live Recalculation Hook)
 progress:
   total_phases: 4
   completed_phases: 3
-  total_plans: 7
-  completed_plans: 7
-  percent: 100
+  total_plans: 9
+  completed_plans: 8
+  percent: 89
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-18)
 
 **Core value:** Every person pays exactly what they owe — no more, no less — even when shared appetizers, per-person tip preferences, and tax make it complicated.
-**Current focus:** Phase 3 in progress — tip, tax, and results
+**Current focus:** Phase 4 in progress — mobile polish
 
 ## Current Position
 
-Phase: 3 of 4 (Tip, Tax, and Results)
-Plan: 3 of 3 in current phase (03-03 complete)
-Status: Phase 3 complete
-Last activity: 2026-03-18 — Completed Plan 03-03 (Hardening, Accessibility, and Integration Tests)
+Phase: 4 of 4 (Mobile Polish)
+Plan: 1 of 2 in current phase (04-01 complete)
+Status: Phase 4 in progress
+Last activity: 2026-03-18 — Completed Plan 04-01 (Live Recalculation Hook)
 
-Progress: [██████████] 100%
+Progress: [█████████░] 89%
 
 ## Performance Metrics
 
@@ -55,6 +55,7 @@ Progress: [██████████] 100%
 | Phase 03-tip-tax-and-results P01 | 2 min | 2 tasks | 5 files |
 | Phase 03-tip-tax-and-results P02 | 2 min | 2 tasks | 6 files |
 | Phase 03-tip-tax-and-results P03 | 2 min | 2 tasks | 6 files |
+| Phase 04-mobile-polish P01 | 3 min | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -81,6 +82,9 @@ Recent decisions affecting current work:
 - [Phase 03-03]: Tip/tax validation caps at 100% to prevent absurd values
 - [Phase 03-03]: isCustom initialized via PRESETS.includes check, not hardcoded false
 - [Phase 03-03]: aria-label on expand button is dynamic with person name
+- [Phase 04-01]: Dual-track state pattern: ephemeral drafts in hook state, committed values in Zustand store
+- [Phase 04-01]: ResultsPanel falls back to computing results from store when props not passed (backward compat)
+- [Phase 04-01]: All draft callback props are optional (?:) so components work standalone in tests
 
 ### Pending Todos
 
@@ -93,6 +97,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-19T00:13:04.882Z
-Stopped at: Phase 4 UI-SPEC approved
-Resume file: .planning/phases/04-mobile-polish/04-UI-SPEC.md
+Last session: 2026-03-19T00:42:00Z
+Stopped at: Completed 04-01-PLAN.md
+Resume file: .planning/phases/04-mobile-polish/04-01-SUMMARY.md

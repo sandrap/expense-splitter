@@ -77,7 +77,7 @@ Plans:
   3. Totals recalculate instantly as the user edits any value (no Calculate button required)
   4. Edge cases produce no broken states: zero people, one person, all items unassigned, empty bill
   5. Dark mode is supported for low-light restaurant environments
-**Plans:** 2 plans
+**Plans:** 1/2 plans executed
 
 Plans:
 - [ ] 04-01-PLAN.md — Dual-track live recalculation: useDraftCalculation hook + wiring draft callbacks into all numeric input components
@@ -93,4 +93,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Foundation | 2/2 | Complete    | 2026-03-18 |
 | 2. People and Items UI | 0/2 | Not started | - |
 | 3. Tip, Tax, and Results | 3/3 | Complete   | 2026-03-18 |
-| 4. Mobile Polish | 0/2 | Not started | - |
+| 4. Mobile Polish | 1/2 | In Progress|  |
