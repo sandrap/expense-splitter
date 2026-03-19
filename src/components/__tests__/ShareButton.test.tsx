@@ -11,16 +11,6 @@ beforeEach(() => {
     settings: { defaultTipPercent: 18, defaultTaxPercent: 0 },
     tipOverrides: {},
   });
-  // Restore clipboard mock
-  Object.assign(navigator, {
-    clipboard: {
-      writeText: vi.fn().mockResolvedValue(undefined),
-    },
-  });
-});
-
-afterEach(() => {
-  vi.restoreAllMocks();
 });
 
 describe('ShareButton', () => {
@@ -31,10 +21,14 @@ describe('ShareButton', () => {
 
   it('clicking the button calls navigator.clipboard.writeText with a URL containing #', async () => {
     const user = userEvent.setup();
+    // Mock after userEvent.setup() which stubs navigator.clipboard
+    const writeTextSpy = vi.fn().mockResolvedValue(undefined);
+    navigator.clipboard.writeText = writeTextSpy;
+
     render(<ShareButton label="Share" />);
     await user.click(screen.getByRole('button', { name: 'Share' }));
     await waitFor(() => {
-      expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
+      expect(writeTextSpy).toHaveBeenCalledWith(
         expect.stringContaining('#')
       );
     });
@@ -50,12 +44,10 @@ describe('ShareButton', () => {
   });
 
   it('when clipboard writeText rejects, the fallback modal appears', async () => {
-    Object.assign(navigator, {
-      clipboard: {
-        writeText: vi.fn().mockRejectedValue(new Error('not allowed')),
-      },
-    });
     const user = userEvent.setup();
+    // Override after userEvent.setup() stubs clipboard
+    navigator.clipboard.writeText = vi.fn().mockRejectedValue(new Error('not allowed'));
+
     render(<ShareButton label="Share" />);
     await user.click(screen.getByRole('button', { name: 'Share' }));
     await waitFor(() => {
@@ -64,12 +56,9 @@ describe('ShareButton', () => {
   });
 
   it('fallback modal contains a textarea with the URL', async () => {
-    Object.assign(navigator, {
-      clipboard: {
-        writeText: vi.fn().mockRejectedValue(new Error('not allowed')),
-      },
-    });
     const user = userEvent.setup();
+    navigator.clipboard.writeText = vi.fn().mockRejectedValue(new Error('not allowed'));
+
     render(<ShareButton label="Share" />);
     await user.click(screen.getByRole('button', { name: 'Share' }));
     await waitFor(() => {
@@ -80,12 +69,9 @@ describe('ShareButton', () => {
   });
 
   it('fallback modal can be closed by clicking "Got it"', async () => {
-    Object.assign(navigator, {
-      clipboard: {
-        writeText: vi.fn().mockRejectedValue(new Error('not allowed')),
-      },
-    });
     const user = userEvent.setup();
+    navigator.clipboard.writeText = vi.fn().mockRejectedValue(new Error('not allowed'));
+
     render(<ShareButton label="Share" />);
     await user.click(screen.getByRole('button', { name: 'Share' }));
     await waitFor(() => {
