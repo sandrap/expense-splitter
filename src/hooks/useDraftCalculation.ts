@@ -52,6 +52,7 @@ export function useDraftCalculation() {
     }
 
     return calculateResults({
+      billName: '',
       people,
       items: mergedItems,
       settings: mergedSettings,

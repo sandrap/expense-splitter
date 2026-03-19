@@ -25,7 +25,7 @@ export function ResultsPanel({ results, grandTotal, onPersonTipDraftChange, onPe
 
   // Must be before early returns (Rules of Hooks)
   const fallbackResults = useMemo(
-    () => calculateResults({ people, items, settings, tipOverrides }),
+    () => calculateResults({ billName: '', people, items, settings, tipOverrides }),
     [people, items, settings, tipOverrides]
   );
 
