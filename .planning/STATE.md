@@ -1,17 +1,17 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: milestone
-status: completed
-stopped_at: Completed 04-02-PLAN.md — All plans complete
-last_updated: "2026-03-19T01:37:09.244Z"
-last_activity: 2026-03-18 — Completed Plan 04-02 (Mobile UX Polish)
+milestone: v1.1
+milestone_name: sharing-and-payments
+status: in_progress
+stopped_at: Defining requirements for v1.1
+last_updated: "2026-03-19T02:00:00.000Z"
+last_activity: 2026-03-19 — Milestone v1.1 started
 progress:
-  total_phases: 4
-  completed_phases: 4
-  total_plans: 9
-  completed_plans: 9
-  percent: 100
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+  percent: 0
 ---
 
 # Project State
@@ -21,19 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-19 after v1.0)
 
 **Core value:** Every person pays exactly what they owe — no more, no less — even when shared appetizers, different tip preferences, and tax make it complicated.
-**Current focus:** Planning next milestone
-
-See: .planning/PROJECT.md (updated 2026-03-18)
-
-**Core value:** Every person pays exactly what they owe — no more, no less — even when shared appetizers, per-person tip preferences, and tax make it complicated.
-**Current focus:** All phases complete
+**Current focus:** Defining requirements for v1.1 (Sharing & Payments)
 
 ## Current Position
 
-Phase: 4 of 4 (Mobile Polish)
-Plan: 2 of 2 in current phase (all complete)
-Status: All plans complete
-Last activity: 2026-03-18 — Completed Plan 04-02 (Mobile UX Polish)
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-03-19 — Milestone v1.1 started
 
 Progress: [██████████] 100%
 

@@ -21,9 +21,24 @@ Every person pays exactly what they owe — no more, no less — even when share
 - ✓ Show final per-person totals, updating live on every keystroke — v1.0
 - ✓ Show expandable itemized breakdown per person (what they had, tip, tax) — v1.0
 
+## Current Milestone: v1.1 Sharing & Payments
+
+**Goal:** Make it easy to share the split with everyone at the table and request payment via Venmo.
+
+**Target features:**
+- Optional bill name/title
+- Shareable URL encoding full bill state (view + edit)
+- localStorage history — auto-save recent bills, browse and restore
+- Per-person Venmo "Request $X" deep link button
+
 ### Active
 
-*(none — next milestone to be defined)*
+- [ ] User can optionally name the bill
+- [ ] User can generate and copy a shareable URL with the full bill state
+- [ ] User can open a shared URL and edit the bill
+- [ ] App auto-saves recent bills to localStorage
+- [ ] User can view and restore past bills from history
+- [ ] Each person's result card shows a Venmo deep link button to request their share
 
 ### Out of Scope
 
