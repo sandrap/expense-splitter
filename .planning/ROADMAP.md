@@ -71,10 +71,10 @@ Plans:
   1. Each person's result card shows a Venmo button that opens the Venmo app with the correct dollar amount and a descriptive note pre-filled
   2. Venmo button is not shown when a person owes $0.00
   3. Venmo button works on both iOS and Android mobile browsers (opens native app or app store)
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 07-01: TBD
+- [ ] 07-01-PLAN.md — buildVenmoUrl utility, VenmoButton component, PersonResultCard integration, full test coverage
 
 ## Progress
 
